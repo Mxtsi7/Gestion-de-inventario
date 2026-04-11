@@ -10,10 +10,14 @@
 using System;
 using System.Reflection;
 
+[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.PackageName", "com.inventorycontrol.app")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.PublisherName", "InventoryControl")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.Name", "InventoryControl")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.Version", "1.0.0.0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("InventoryControl.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+e23643c5c02062fbc1937ebcf9014d76d7e97dea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+7ff37bba18d33eeadf2ea0b839fa376cecf84d9e")]
 [assembly: System.Reflection.AssemblyProductAttribute("InventoryControl.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InventoryControl.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

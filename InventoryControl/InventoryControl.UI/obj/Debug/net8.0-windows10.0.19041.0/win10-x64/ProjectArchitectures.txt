@@ -1,0 +1,1 @@
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.UI\InventoryControl.UI.csproj;x64
