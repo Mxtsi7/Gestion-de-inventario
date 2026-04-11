@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MediatR;
 using InventoryControl.Application.Queries.GetProductList;
+using InventoryControl.UI.Views;
 using Microsoft.Maui.Controls;
 
 namespace InventoryControl.UI.ViewModels;
@@ -18,11 +19,13 @@ public class MainViewModel : BindableObject
     }
 
     public ICommand LoadProductsCommand { get; }
+    public ICommand GoToFormCommand { get; }
 
     public MainViewModel(IMediator mediator)
     {
         _mediator = mediator;
         LoadProductsCommand = new Command(async () => await LoadProductsAsync());
+        GoToFormCommand = new Command(async () => await Shell.Current.GoToAsync(nameof(ProductFormPage)));
     }
 
     private async Task LoadProductsAsync()
