@@ -1,8 +1,9 @@
 using InventoryControl.UI.Views;
+using Microsoft.Maui.Controls;
 
 namespace InventoryControl.UI;
 
-public partial class App : Application
+public partial class App : Microsoft.Maui.Controls.Application
 {
     private readonly MainPage _mainPage;
 
