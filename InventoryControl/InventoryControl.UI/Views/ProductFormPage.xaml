@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InventoryControl.UI.Views.ProductFormPage"
+             Title="Nuevo Producto">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="12">
+            <Label Text="Nombre" />
+            <Entry Text="{Binding Name}" Placeholder="Ej: Arroz 1kg" />
+
+            <Label Text="SKU" />
+            <Entry Text="{Binding Sku}" Placeholder="Ej: ARR-001" />
+
+            <Label Text="Categoría" />
+            <Entry Text="{Binding Category}" Placeholder="Ej: Alimentos" />
+
+            <Label Text="Precio unitario" />
+            <Entry Text="{Binding UnitPrice}" Keyboard="Numeric" />
+
+            <Label Text="Stock mínimo" />
+            <Entry Text="{Binding MinimumStockThreshold}" Keyboard="Numeric" />
+
+            <Button Text="Guardar" Command="{Binding SaveCommand}" Margin="0,16,0,0" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

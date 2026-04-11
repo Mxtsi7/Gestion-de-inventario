@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
+             xmlns:conv="clr-namespace:InventoryControl.UI.Enums"
+             x:Class="InventoryControl.UI.Views.MainPage"
+             Title="Inventario">
+
+    <ContentPage.Resources>
+        <conv:StatusColorConverter x:Key="StatusColor" />
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*">
+        <Button Grid.Row="0" Text="+ Registrar Producto"
+                Command="{Binding GoToFormCommand}"
+                Margin="16" HorizontalOptions="End" />
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Products}"
+                        Margin="16">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,4" Padding="12" CornerRadius="8">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold"/>
+                                <Label Text="{Binding Sku}" FontSize="12" TextColor="Gray"/>
+                                <Label Text="{Binding CurrentStock, StringFormat='Stock: {0}'}" />
+                            </VerticalStackLayout>
+                            <Frame Grid.Column="1" CornerRadius="12" Padding="8,4"
+                                   BackgroundColor="{Binding StatusBadge, Converter={StaticResource StatusColor}}">
+                                <Label Text="{Binding StatusBadge}" TextColor="White" FontSize="12"/>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

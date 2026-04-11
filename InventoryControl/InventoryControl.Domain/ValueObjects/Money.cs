@@ -1,0 +1,12 @@
+namespace InventoryControl.Domain.ValueObjects;
+
+public record Money(decimal Amount, string Currency = "CLP")
+{
+    public static Money operator +(Money a, Money b)
+    {
+        if (a.Currency != b.Currency) throw new InvalidOperationException("Currency mismatch.");
+        return new Money(a.Amount + b.Amount, a.Currency);
+    }
+
+    public override string ToString() => $"{Currency} {Amount:N2}";
+}
