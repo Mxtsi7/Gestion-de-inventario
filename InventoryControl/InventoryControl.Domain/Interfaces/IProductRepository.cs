@@ -1,3 +1,4 @@
+using InventoryControl.Domain.Entities;
 namespace InventoryControl.Domain.Interfaces;
 
 public interface IProductRepository

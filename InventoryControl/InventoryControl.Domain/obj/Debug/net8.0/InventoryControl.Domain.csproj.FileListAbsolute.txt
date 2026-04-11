@@ -1,0 +1,12 @@
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\obj\Debug\net8.0\InventoryControl.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\obj\Debug\net8.0\InventoryControl.Domain.AssemblyInfoInputs.cache
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\obj\Debug\net8.0\InventoryControl.Domain.AssemblyInfo.cs
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\obj\Debug\net8.0\InventoryControl.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\obj\Debug\net8.0\InventoryControl.Domain.sourcelink.json
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\bin\Debug\net8.0\InventoryControl.Domain.deps.json
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\bin\Debug\net8.0\InventoryControl.Domain.dll
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\bin\Debug\net8.0\InventoryControl.Domain.pdb
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\obj\Debug\net8.0\InventoryControl.Domain.dll
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\obj\Debug\net8.0\refint\InventoryControl.Domain.dll
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\obj\Debug\net8.0\InventoryControl.Domain.pdb
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Domain\obj\Debug\net8.0\ref\InventoryControl.Domain.dll

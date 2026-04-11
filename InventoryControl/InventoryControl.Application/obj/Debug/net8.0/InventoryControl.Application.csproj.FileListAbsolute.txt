@@ -1,0 +1,16 @@
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\bin\Debug\net8.0\InventoryControl.Application.deps.json
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\bin\Debug\net8.0\InventoryControl.Application.dll
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\bin\Debug\net8.0\InventoryControl.Application.pdb
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\bin\Debug\net8.0\InventoryControl.Domain.dll
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\bin\Debug\net8.0\InventoryControl.Domain.pdb
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\obj\Debug\net8.0\InventoryControl.Application.csproj.AssemblyReference.cache
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\obj\Debug\net8.0\InventoryControl.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\obj\Debug\net8.0\InventoryControl.Application.AssemblyInfoInputs.cache
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\obj\Debug\net8.0\InventoryControl.Application.AssemblyInfo.cs
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\obj\Debug\net8.0\InventoryControl.Application.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\obj\Debug\net8.0\InventoryControl.Application.sourcelink.json
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\obj\Debug\net8.0\Inventor.2115D4E5.Up2Date
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\obj\Debug\net8.0\InventoryControl.Application.dll
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\obj\Debug\net8.0\refint\InventoryControl.Application.dll
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\obj\Debug\net8.0\InventoryControl.Application.pdb
+C:\Users\Asus\Desktop\Empresariales\Gestion-de-inventario\InventoryControl\InventoryControl.Application\obj\Debug\net8.0\ref\InventoryControl.Application.dll
