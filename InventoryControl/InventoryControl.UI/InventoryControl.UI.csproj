@@ -11,10 +11,7 @@
     <ApplicationId>com.inventorycontrol.app</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-    <!-- Configuración para correr sin empaquetar (Unpackaged) -->
     <WindowsPackageType>None</WindowsPackageType>
-    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-    <SelfContained>true</SelfContained>
   </PropertyGroup>
 
   <ItemGroup>
