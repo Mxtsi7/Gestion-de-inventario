@@ -9,7 +9,7 @@ namespace InventoryControl.UI.ViewModels;
 public class MainViewModel : BindableObject
 {
     private readonly IMediator _mediator;
-    private ObservableCollection<ProductDto> _products;
+    private ObservableCollection<ProductDto> _products = new();
 
     public ObservableCollection<ProductDto> Products
     {
@@ -22,7 +22,6 @@ public class MainViewModel : BindableObject
     public MainViewModel(IMediator mediator)
     {
         _mediator = mediator;
-        Products = new ObservableCollection<ProductDto>();
         LoadProductsCommand = new Command(async () => await LoadProductsAsync());
     }
 
