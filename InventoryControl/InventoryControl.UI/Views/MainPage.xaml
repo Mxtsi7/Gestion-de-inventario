@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
              xmlns:conv="clr-namespace:InventoryControl.UI.Enums"
+             xmlns:queries="clr-namespace:InventoryControl.Application.Queries.GetProductList;assembly=InventoryControl.Application"
              x:Class="InventoryControl.UI.Views.MainPage"
+             x:DataType="vm:MainViewModel"
              Title="Inventario">
 
     <ContentPage.Resources>
@@ -19,7 +21,7 @@
                         ItemsSource="{Binding Products}"
                         Margin="16">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="queries:ProductDto">
                     <Frame Margin="0,4" Padding="12" CornerRadius="8">
                         <Grid ColumnDefinitions="*,Auto">
                             <VerticalStackLayout>
