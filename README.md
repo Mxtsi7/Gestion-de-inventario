@@ -1,5 +1,4 @@
 # Gestion-de-inventario
-# Gestion-de-inventario
 
 Aplicación de control de inventario construida con **.NET MAUI** y **C#**, siguiendo una arquitectura por capas con enfoque **Clean Architecture + CQRS**.
 
@@ -31,117 +30,170 @@ InventoryControl/
 - **Infrastructure**: persistencia con EF Core y configuración de SQLite.
 - **UI**: interfaz .NET MAUI, páginas XAML y viewmodels.
 
-## Requisitos previos
+---
 
-Antes de ejecutar el proyecto, asegúrate de tener instalado:
+## ⚠️ Requisitos previos obligatorios
 
-- Visual Studio 2022.
-- .NET 8 SDK.
-- Carga de trabajo de **.NET MAUI** en Visual Studio.
-- Git.
+Antes de ejecutar el proyecto debes tener instalado **todo lo siguiente** en orden:
 
-## Instalación en Visual Studio 2022
+### 1. .NET 8 SDK
+Descarga e instala el SDK de .NET 8 desde:
+> https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 
-1. Abre **Visual Studio Installer**.
-2. Elige **Modificar** sobre tu instalación de Visual Studio 2022.
-3. Marca la carga de trabajo **.NET Multi-platform App UI development**.
-4. Instala los componentes opcionales sugeridos por Visual Studio.
-5. Espera a que finalice la instalación.
+Verifica la instalación con:
+```bash
+dotnet --version
+```
+Debe mostrar una versión `8.x.x`.
 
-## Clonar el repositorio
+### 2. Carga de trabajo de .NET MAUI para Windows
+Ejecuta este comando en la terminal **como administrador**:
+```bash
+dotnet workload install maui-windows
+```
+
+Verifica que esté instalado con:
+```bash
+dotnet workload list
+```
+Debe aparecer `maui-windows` en la lista.
+
+### 3. Windows App Runtime 1.4 (obligatorio para ejecutar la app)
+La aplicación requiere el **Windows App Runtime versión 1.4** para poder ejecutarse en Windows.
+
+Descarga e instala el runtime (ejecutar **como administrador**):
+> https://aka.ms/windowsappsdk/1.4/latest/windowsappruntimeinstall-x64.exe
+
+⚠️ **Importante:** Si el instalador se ejecuta sin permisos de administrador, salteará la instalación del paquete principal y la app no podrá abrirse. Siempre ejecutar con **clic derecho → Ejecutar como administrador**.
+
+### 4. Git
+Descarga e instala Git desde:
+> https://git-scm.com/downloads
+
+### 5. Editor (elige uno)
+
+#### Opción A — Visual Studio Code (recomendado para este proyecto)
+Instala VS Code desde:
+> https://code.visualstudio.com/
+
+Luego instala estas extensiones dentro de VS Code:
+- **C# Dev Kit** (Microsoft)
+- **.NET MAUI** (Microsoft)
+
+#### Opción B — Visual Studio 2022
+Descarga Visual Studio 2022 desde:
+> https://visualstudio.microsoft.com/
+
+Durante la instalación marca la carga de trabajo: **.NET Multi-platform App UI development**.
+
+---
+
+## Instalación y ejecución
+
+### 1. Clonar el repositorio
 
 ```bash
 git clone https://github.com/Mxtsi7/Gestion-de-inventario.git
-cd Gestion-de-inventario
+cd Gestion-de-inventario/InventoryControl
 ```
 
-## Restaurar dependencias
-
-Ve a la carpeta de la solución:
-
-```bash
-cd InventoryControl
-```
-
-Restaura los paquetes NuGet:
+### 2. Restaurar dependencias
 
 ```bash
 dotnet restore
 ```
 
-## Compilar la solución
+### 3. Compilar la solución
 
 ```bash
 dotnet build
 ```
 
-## Abrir en Visual Studio
+Debe mostrar: `Compilación correcta` sin errores.
 
-1. Entra a la carpeta `InventoryControl`.
-2. Abre el archivo `InventoryControl.sln`.
-3. Espera a que Visual Studio restaure los paquetes automáticamente.
-4. Selecciona el proyecto de inicio: `InventoryControl.UI`.
-5. Ejecuta la aplicación.
+### 4. Ejecutar la aplicación
 
-## Ejecución desde línea de comandos
+#### Desde Visual Studio Code
+1. Abre la carpeta `Gestion-de-inventario` en VS Code.
+2. En el panel lateral busca **Solution Explorer**.
+3. Expande la solución y haz clic derecho en `InventoryControl.UI`.
+4. Selecciona **Set as Startup Project**.
+5. Clic derecho nuevamente → **Start Without Debugging**.
 
-Si ya tienes MAUI correctamente instalado:
-
+#### Desde la terminal
 ```bash
-cd InventoryControl
-dotnet build
-dotnet run --project InventoryControl.UI
+dotnet run --project InventoryControl.UI --framework net8.0-windows10.0.19041.0
 ```
+
+#### Desde Visual Studio 2022
+1. Abre `InventoryControl/InventoryControl.sln`.
+2. Selecciona `InventoryControl.UI` como proyecto de inicio.
+3. Elige **Windows Machine** como destino.
+4. Presiona **F5**.
+
+---
 
 ## Base de datos
 
-La aplicación utiliza **SQLite** y crea el archivo de base de datos localmente al iniciar por primera vez.
+La aplicación usa **SQLite** y crea el archivo de base de datos automáticamente al iniciar por primera vez. No se requiere ninguna configuración adicional.
+
+---
 
 ## Paquetes principales
 
-- MediatR
-- FluentValidation.DependencyInjectionExtensions
-- Microsoft.EntityFrameworkCore.Sqlite
-- CommunityToolkit.Mvvm
-- Microsoft.Extensions.DependencyInjection
+| Paquete | Versión |
+|---|---|
+| Microsoft.Maui.Controls | 8.0.14 |
+| MediatR | 12.2.0 |
+| FluentValidation.DependencyInjectionExtensions | útima |
+| Microsoft.EntityFrameworkCore.Sqlite | útima |
+| CommunityToolkit.Mvvm | 8.2.2 |
+| Microsoft.Extensions.DependencyInjection | 8.0.1 |
+
+---
 
 ## Problemas comunes
 
-### 1. `MSBUILD : error MSB1003`
-Significa que estás ejecutando `dotnet build` fuera de la carpeta que contiene el archivo `.sln` o `.csproj`.
+### Error: `This application requires the Windows App Runtime Version 1.4`
+Falta instalar el runtime de Windows App SDK.
 
-Solución:
+**Solución:** Descarga y ejecuta **como administrador**:
+> https://aka.ms/windowsappsdk/1.4/latest/windowsappruntimeinstall-x64.exe
 
+### Error: `Clase no registrada (0x80040154 REGDB_E_CLASSNOTREG)`
+El runtime de Windows App SDK no está instalado o fue instalado sin permisos de administrador.
+
+**Solución:** Reinstala el Windows App Runtime ejecutando el instalador como administrador (ver paso 3 de Requisitos).
+
+### Error: `XA5300 No se encontró el directorio Android SDK`
+El proyecto está configurado solo para Windows. Este error no aplica.
+
+### Error: `MSBUILD : error MSB1003`
+Estás ejecutando `dotnet build` fuera de la carpeta correcta.
+
+**Solución:**
 ```bash
 cd InventoryControl
 dotnet build
 ```
 
-### 2. `No se encuentra ningún proyecto`
-Eso ocurre cuando estás parado en una carpeta que no contiene un archivo `.csproj`.
+### Workload de MAUI no encontrado
+Ejecuta en la terminal como administrador:
+```bash
+dotnet workload install maui-windows
+```
 
-Verifica que existan estos archivos:
+---
 
-- `InventoryControl/InventoryControl.sln`
-- `InventoryControl/InventoryControl.Domain/InventoryControl.Domain.csproj`
-- `InventoryControl/InventoryControl.Application/InventoryControl.Application.csproj`
-- `InventoryControl/InventoryControl.Infrastructure/InventoryControl.Infrastructure.csproj`
-- `InventoryControl/InventoryControl.UI/InventoryControl.UI.csproj`
+## Flujo general de la arquitectura
 
-### 3. MAUI no compila o faltan workloads
-Abre Visual Studio Installer y confirma que la carga de trabajo de .NET MAUI esté instalada.
-
-## Flujo general
-
-1. La UI envía comandos o consultas.
-2. MediatR redirige al handler correspondiente.
-3. Application ejecuta el caso de uso.
+1. La UI envía comandos o consultas vía MediatR.
+2. MediatR redirige al handler correspondiente en Application.
+3. Application ejecuta el caso de uso y valida con FluentValidation.
 4. Infrastructure persiste datos con EF Core y SQLite.
-5. Domain mantiene las reglas del negocio.
+5. Domain mantiene las reglas del negocio puras, sin dependencias externas.
 
-## Estado actual
-
-El repositorio ya incluye la base de la solución, los proyectos por capa y los archivos principales necesarios para continuar con el desarrollo.
+---
 
 ## Autores
 
