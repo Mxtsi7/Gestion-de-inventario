@@ -21,6 +21,8 @@ public class GetProductListQueryHandler : IRequestHandler<GetProductListQuery, L
                 p.Id,
                 p.Name,
                 p.Sku,
+                p.Category,
+                p.UnitPrice,
                 p.CurrentStock,
                 p.GetStockLevelStatus()
             ))

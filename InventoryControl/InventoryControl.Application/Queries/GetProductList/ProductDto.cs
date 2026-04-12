@@ -5,6 +5,8 @@ public record ProductDto(
     Guid Id,
     string Name,
     string Sku,
+    string Category,
+    decimal UnitPrice,
     int CurrentStock,
     string StatusBadge
 );
