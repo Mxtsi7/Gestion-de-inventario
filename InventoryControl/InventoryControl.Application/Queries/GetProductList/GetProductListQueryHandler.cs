@@ -1,4 +1,5 @@
 using MediatR;
+using InventoryControl.Application.DTOs;
 using InventoryControl.Domain.Interfaces;
 
 namespace InventoryControl.Application.Queries.GetProductList;
@@ -23,6 +24,7 @@ public class GetProductListQueryHandler : IRequestHandler<GetProductListQuery, L
                 p.Sku,
                 p.Category,
                 p.UnitPrice,
+                p.MinimumStockThreshold,
                 p.CurrentStock,
                 p.GetStockLevelStatus()
             ))

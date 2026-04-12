@@ -1,4 +1,5 @@
 using MediatR;
+using InventoryControl.Application.DTOs;
 
 namespace InventoryControl.Application.Queries.GetProductList;
 
