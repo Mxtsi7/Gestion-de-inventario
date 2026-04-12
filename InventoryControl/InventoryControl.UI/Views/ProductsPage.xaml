@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
     xmlns:queries="clr-namespace:InventoryControl.Application.Queries.GetProductList;assembly=InventoryControl.Application"
+    xmlns:dto="clr-namespace:InventoryControl.Application.DTOs;assembly=InventoryControl.Application"
     xmlns:conv="clr-namespace:InventoryControl.UI.Enums"
     x:Class="InventoryControl.UI.Views.ProductsPage"
     x:DataType="vm:MainViewModel"
@@ -68,7 +69,7 @@
                 </CollectionView.EmptyView>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="queries:ProductDto">
+                    <DataTemplate x:DataType="dto:ProductDto">
                         <Border Margin="16,8,16,0" Padding="16" StrokeShape="RoundRectangle 12"
                                 BackgroundColor="{StaticResource Surface}"
                                 Stroke="{StaticResource Border}" StrokeThickness="1">
