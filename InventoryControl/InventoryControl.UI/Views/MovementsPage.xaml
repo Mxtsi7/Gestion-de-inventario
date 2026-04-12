@@ -48,13 +48,12 @@
         <!-- Lista Movimientos -->
         <CollectionView Grid.Row="2" ItemsSource="{Binding Movements}" Margin="0,8,0,0">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="vm:MovementRecord">
                     <Border Margin="16,0,16,8" Padding="16" StrokeShape="RoundRectangle 12"
                             BackgroundColor="{StaticResource Surface}"
                             Stroke="{StaticResource Border}" StrokeThickness="1">
                         <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="4">
 
-                            <!-- Producto y SKU -->
                             <Label Grid.Row="0" Grid.Column="0"
                                    Text="{Binding ProductName}"
                                    Style="{StaticResource CardTitle}" FontSize="15" />
@@ -62,7 +61,6 @@
                                    Text="{Binding Sku}"
                                    Style="{StaticResource CardSubtitle}" />
 
-                            <!-- Badge tipo (Entrada/Salida) -->
                             <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
                                     Padding="12,6" StrokeShape="RoundRectangle 20"
                                     BackgroundColor="{Binding TypeColor}"
@@ -71,7 +69,6 @@
                                        FontSize="12" FontAttributes="Bold" />
                             </Border>
 
-                            <!-- Info inferior -->
                             <HorizontalStackLayout Grid.Row="2" Grid.ColumnSpan="2" Spacing="16" Margin="0,6,0,0">
                                 <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
                                        FontSize="12" TextColor="{StaticResource TextSecondary}" />

@@ -27,7 +27,6 @@
             <!-- Stats Cards -->
             <Grid Padding="16,16,16,0" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="12">
 
-                <!-- Total Productos -->
                 <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{StaticResource Surface}"
                         StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
                     <VerticalStackLayout Spacing="4">
@@ -37,7 +36,6 @@
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- En Stock -->
                 <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{StaticResource Surface}"
                         StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
                     <VerticalStackLayout Spacing="4">
@@ -47,7 +45,6 @@
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- Stock Bajo -->
                 <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource Surface}"
                         StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
                     <VerticalStackLayout Spacing="4">
@@ -57,7 +54,6 @@
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- Movimientos Hoy -->
                 <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource Surface}"
                         StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
                     <VerticalStackLayout Spacing="4">
@@ -74,7 +70,7 @@
 
                 <CollectionView ItemsSource="{Binding StockAlerts}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="vm:StockAlertItem">
                             <Border BackgroundColor="{StaticResource WarningLight}"
                                     StrokeShape="RoundRectangle 10" Stroke="Transparent" Padding="14,10" Margin="0,0,0,6">
                                 <Grid ColumnDefinitions="*,Auto">
@@ -95,7 +91,7 @@
 
                 <CollectionView ItemsSource="{Binding RecentMovements}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="vm:MovementItem">
                             <Border BackgroundColor="{StaticResource Surface}"
                                     StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1"
                                     Padding="14,12" Margin="0,0,0,8">

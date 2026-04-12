@@ -12,6 +12,7 @@ public class MainViewModel : BindableObject
     private readonly IMediator _mediator;
     private ObservableCollection<ProductDto> _products = new();
     private bool _isLoading;
+    private string _searchText = string.Empty;
 
     public ObservableCollection<ProductDto> Products
     {
@@ -23,6 +24,12 @@ public class MainViewModel : BindableObject
     {
         get => _isLoading;
         set { _isLoading = value; OnPropertyChanged(); }
+    }
+
+    public string SearchText
+    {
+        get => _searchText;
+        set { _searchText = value; OnPropertyChanged(); }
     }
 
     public ICommand LoadProductsCommand { get; }

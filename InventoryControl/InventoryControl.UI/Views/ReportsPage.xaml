@@ -57,7 +57,7 @@
 
                 <CollectionView ItemsSource="{Binding TopProducts}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="vm:TopProductItem">
                             <Border BackgroundColor="{StaticResource Surface}"
                                     StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1"
                                     Padding="16,12" Margin="0,0,0,8">
