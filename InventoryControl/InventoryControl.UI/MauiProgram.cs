@@ -1,8 +1,4 @@
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Maui.Controls.Hosting;
-using Microsoft.Maui.Hosting;
-using Microsoft.EntityFrameworkCore;
-using MediatR;
+using CommunityToolkit.Maui;
 using FluentValidation;
 using InventoryControl.Application.Commands.RegisterProduct;
 using InventoryControl.Application.Validators;
@@ -10,6 +6,11 @@ using InventoryControl.Domain.Interfaces;
 using InventoryControl.Infrastructure.Persistence;
 using InventoryControl.UI.ViewModels;
 using InventoryControl.UI.Views;
+using InventoryControl.UI.Popups;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Hosting;
 
 namespace InventoryControl.UI;
 
@@ -21,6 +22,7 @@ public static class MauiProgram
 
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -31,7 +33,7 @@ public static class MauiProgram
         builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlite($"Data Source={dbPath}"));
 
-        // Repositories
+        // Repositorios
         builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
         // MediatR
@@ -41,24 +43,28 @@ public static class MauiProgram
         // FluentValidation
         builder.Services.AddValidatorsFromAssemblyContaining<RegisterProductCommandValidator>();
 
-        // ViewModels y Views — Transient para forms, Singleton para main
+        // ─── ViewModels ───
+        builder.Services.AddTransient<DashboardViewModel>();
+        builder.Services.AddTransient<ProductosViewModel>();
+        builder.Services.AddTransient<MovimientosViewModel>();
+        builder.Services.AddTransient<RegistrarMovimientoViewModel>();
+        builder.Services.AddTransient<ReportesViewModel>();
+        // legacy
         builder.Services.AddTransient<MainViewModel>();
         builder.Services.AddTransient<ProductFormViewModel>();
+
+        // ─── Views ───
+        builder.Services.AddTransient<DashboardPage>();
+        builder.Services.AddTransient<ProductosPage>();
+        builder.Services.AddTransient<MovimientosPage>();
+        builder.Services.AddTransient<ReportesPage>();
+        builder.Services.AddTransient<RegistrarMovimientoPopup>();
+        // legacy
         builder.Services.AddTransient<MainPage>();
         builder.Services.AddTransient<ProductFormPage>();
 
-        builder.Services.AddTransient<DashboardPage>();
-        builder.Services.AddTransient<ProductsPage>();
-        builder.Services.AddTransient<MovementsPage>();
-        builder.Services.AddTransient<ReportsPage>();
-
-        builder.Services.AddTransient<DashboardViewModel>();
-        builder.Services.AddTransient<MovementsViewModel>();
-        builder.Services.AddTransient<ReportsViewModel>();
-
         var app = builder.Build();
 
-        // Crear/migrar BD al iniciar
         using var scope = app.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         db.Database.EnsureCreated();
