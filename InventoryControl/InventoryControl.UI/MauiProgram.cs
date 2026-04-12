@@ -47,6 +47,15 @@ public static class MauiProgram
         builder.Services.AddTransient<MainPage>();
         builder.Services.AddTransient<ProductFormPage>();
 
+        builder.Services.AddTransient<DashboardPage>();
+        builder.Services.AddTransient<ProductsPage>();
+        builder.Services.AddTransient<MovementsPage>();
+        builder.Services.AddTransient<ReportsPage>();
+
+        builder.Services.AddTransient<DashboardViewModel>();
+        builder.Services.AddTransient<MovementsViewModel>();
+        builder.Services.AddTransient<ReportsViewModel>();
+
         var app = builder.Build();
 
         // Crear/migrar BD al iniciar

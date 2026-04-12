@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
+    xmlns:queries="clr-namespace:InventoryControl.Application.Queries.GetProductList;assembly=InventoryControl.Application"
+    xmlns:conv="clr-namespace:InventoryControl.UI.Enums"
+    x:Class="InventoryControl.UI.Views.ProductsPage"
+    x:DataType="vm:MainViewModel"
+    BackgroundColor="{StaticResource Background}">
+
+    <ContentPage.Resources>
+        <conv:StatusColorConverter x:Key="StatusColor" />
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,Auto,*">
+
+        <!-- Top Bar -->
+        <Grid Grid.Row="0" BackgroundColor="{StaticResource Surface}"
+              Padding="20,14" ColumnDefinitions="*,Auto">
+            <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                <Label Text="StockFlow" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource Primary}" />
+                <Label Text="Productos" Style="{StaticResource PageSubtitle}" />
+            </VerticalStackLayout>
+            <Button Grid.Column="1"
+                    Text="+ Agregar Producto"
+                    Command="{Binding GoToFormCommand}"
+                    Style="{StaticResource PrimaryButton}"
+                    VerticalOptions="Center" />
+        </Grid>
+
+        <BoxView Grid.Row="0" VerticalOptions="End" HeightRequest="1" Color="{StaticResource Border}" />
+
+        <!-- Buscador -->
+        <Border Grid.Row="1" BackgroundColor="{StaticResource Surface}"
+                Padding="16,12" Stroke="Transparent">
+            <Border BackgroundColor="{StaticResource Background}"
+                    StrokeShape="RoundRectangle 10" Stroke="{StaticResource Border}" StrokeThickness="1"
+                    Padding="14,0">
+                <Grid ColumnDefinitions="Auto,*">
+                    <Label Grid.Column="0" Text="🔍" FontSize="16" VerticalOptions="Center" Margin="0,0,8,0" />
+                    <SearchBar Grid.Column="1"
+                               Placeholder="Buscar productos..."
+                               Text="{Binding SearchText}"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="{StaticResource TextSecondary}"
+                               TextColor="{StaticResource TextPrimary}"
+                               CancelButtonColor="{StaticResource Primary}" />
+                </Grid>
+            </Border>
+        </Border>
+
+        <!-- Lista Productos -->
+        <RefreshView Grid.Row="2"
+                     Command="{Binding LoadProductsCommand}"
+                     IsRefreshing="{Binding IsLoading}"
+                     RefreshColor="{StaticResource Primary}">
+            <CollectionView ItemsSource="{Binding Products}">
+
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="12" Margin="0,60">
+                        <Label Text="📦" FontSize="48" HorizontalOptions="Center" />
+                        <Label Text="Sin productos registrados" FontSize="16" FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}" HorizontalOptions="Center" />
+                        <Label Text="Toca &quot;+ Agregar Producto&quot; para agregar el primero"
+                               FontSize="14" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="queries:ProductDto">
+                        <Border Margin="16,8,16,0" Padding="16" StrokeShape="RoundRectangle 12"
+                                BackgroundColor="{StaticResource Surface}"
+                                Stroke="{StaticResource Border}" StrokeThickness="1">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+
+                                <!-- Icono categoría -->
+                                <Border Grid.Column="0"
+                                        BackgroundColor="{StaticResource PrimaryLight}"
+                                        StrokeShape="RoundRectangle 10" Stroke="Transparent"
+                                        WidthRequest="46" HeightRequest="46"
+                                        VerticalOptions="Center">
+                                    <Label Text="📦" FontSize="22" HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Border>
+
+                                <!-- Información -->
+                                <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                    <Label Text="{Binding Name}" Style="{StaticResource CardTitle}" FontSize="15" />
+                                    <Label Text="{Binding Sku}" Style="{StaticResource CardSubtitle}" />
+                                    <HorizontalStackLayout Spacing="12" Margin="0,4,0,0">
+                                        <Label Text="{Binding Category}" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                                        <Label Text="|" FontSize="12" TextColor="{StaticResource Border}" />
+                                        <Label Text="{Binding CurrentStock, StringFormat='Stock: {0}'}"
+                                               FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                                        <Label Text="|" FontSize="12" TextColor="{StaticResource Border}" />
+                                        <Label Text="{Binding UnitPrice, StringFormat='${0:N0}'}"
+                                               FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+
+                                <!-- Badge estado -->
+                                <VerticalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
+                                    <Border Padding="10,5" StrokeShape="RoundRectangle 20"
+                                            BackgroundColor="{Binding StatusBadge, Converter={StaticResource StatusColor}}"
+                                            HorizontalOptions="End">
+                                        <Label Text="{Binding StatusBadge}" TextColor="White"
+                                               FontSize="11" FontAttributes="Bold" />
+                                    </Border>
+                                </VerticalStackLayout>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.Footer>
+                    <BoxView HeightRequest="24" Color="Transparent" />
+                </CollectionView.Footer>
+
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

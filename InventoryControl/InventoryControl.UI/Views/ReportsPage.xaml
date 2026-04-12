@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
+    x:Class="InventoryControl.UI.Views.ReportsPage"
+    x:DataType="vm:ReportsViewModel"
+    BackgroundColor="{StaticResource Background}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Top Bar -->
+            <Grid BackgroundColor="{StaticResource Surface}" Padding="20,14">
+                <VerticalStackLayout>
+                    <Label Text="StockFlow" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource Primary}" />
+                    <Label Text="Reportes — Tendencias y estadísticas" Style="{StaticResource PageSubtitle}" />
+                </VerticalStackLayout>
+            </Grid>
+            <BoxView HeightRequest="1" Color="{StaticResource Border}" />
+
+            <!-- KPI Cards -->
+            <Grid Padding="16,16,16,0" ColumnDefinitions="*,*,*" ColumnSpacing="10">
+
+                <Border Grid.Column="0" BackgroundColor="{StaticResource Surface}"
+                        StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="14">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Movimientos del mes" Style="{StaticResource StatLabel}" />
+                        <Label Text="{Binding MonthlyMovements}" Style="{StaticResource StatNumber}" FontSize="22" />
+                        <Label Text="{Binding MonthlyMovementsChange}" FontSize="11" TextColor="{StaticResource Success}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1" BackgroundColor="{StaticResource Surface}"
+                        StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="14">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Valor total inventario" Style="{StaticResource StatLabel}" />
+                        <Label Text="{Binding TotalValue, StringFormat='${0:N0}'}" Style="{StaticResource StatNumber}" FontSize="22" />
+                        <Label Text="{Binding TotalValueChange}" FontSize="11" TextColor="{StaticResource Success}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="2" BackgroundColor="{StaticResource Surface}"
+                        StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="14">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Rotación promedio" Style="{StaticResource StatLabel}" />
+                        <Label Text="{Binding AvgRotation, StringFormat='{0} días'}" Style="{StaticResource StatNumber}" FontSize="22" />
+                        <Label Text="{Binding RotationChange}" FontSize="11" TextColor="{StaticResource Success}" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
+            <!-- Productos más movidos -->
+            <VerticalStackLayout Padding="16,20,16,0" Spacing="12">
+                <Label Text="Productos más movidos" Style="{StaticResource CardTitle}" />
+
+                <CollectionView ItemsSource="{Binding TopProducts}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="{StaticResource Surface}"
+                                    StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1"
+                                    Padding="16,12" Margin="0,0,0,8">
+                                <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="12">
+                                    <Border Grid.Column="0"
+                                            BackgroundColor="{StaticResource PrimaryLight}"
+                                            StrokeShape="RoundRectangle 8" Stroke="Transparent"
+                                            WidthRequest="32" HeightRequest="32">
+                                        <Label Text="{Binding Rank}" FontSize="14" FontAttributes="Bold"
+                                               TextColor="{StaticResource Primary}"
+                                               HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </Border>
+                                    <Label Grid.Column="1" Text="{Binding Name}"
+                                           FontSize="14" TextColor="{StaticResource TextPrimary}"
+                                           VerticalOptions="Center" />
+                                    <Label Grid.Column="2" Text="{Binding Movements, StringFormat='{0} movimientos'}"
+                                           FontSize="12" TextColor="{StaticResource TextSecondary}"
+                                           VerticalOptions="Center" />
+                                    <Label Grid.Column="3" Text="{Binding Change}"
+                                           FontSize="12" FontAttributes="Bold"
+                                           TextColor="{StaticResource Success}"
+                                           VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <BoxView HeightRequest="30" Color="Transparent" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

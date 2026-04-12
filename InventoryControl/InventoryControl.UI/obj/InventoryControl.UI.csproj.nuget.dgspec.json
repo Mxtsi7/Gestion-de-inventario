@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.UI\\InventoryControl.UI.csproj": {}
+    "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.UI\\InventoryControl.UI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj": {
+    "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj",
+        "projectUniqueName": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj",
         "projectName": "InventoryControl.Application",
-        "projectPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\obj\\",
+        "projectPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj",
+        "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -27,8 +27,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj": {
-                "projectPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj"
+              "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj": {
+                "projectPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj"
               }
             }
           }
@@ -42,8 +42,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.200"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -69,40 +68,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj": {
+    "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj",
         "projectName": "InventoryControl.Domain",
-        "projectPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\obj\\",
+        "projectPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj",
+        "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -126,8 +111,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.200"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -143,40 +127,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\InventoryControl.Infrastructure.csproj": {
+    "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\InventoryControl.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\InventoryControl.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\InventoryControl.Infrastructure.csproj",
         "projectName": "InventoryControl.Infrastructure",
-        "projectPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\InventoryControl.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\InventoryControl.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -189,11 +159,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj": {
-                "projectPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj"
+              "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj": {
+                "projectPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj"
               },
-              "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj": {
-                "projectPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj"
+              "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj": {
+                "projectPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Domain\\InventoryControl.Domain.csproj"
               }
             }
           }
@@ -207,8 +177,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.200"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -230,41 +199,27 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.UI\\InventoryControl.UI.csproj": {
+    "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.UI\\InventoryControl.UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.UI\\InventoryControl.UI.csproj",
+        "projectUniqueName": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.UI\\InventoryControl.UI.csproj",
         "projectName": "InventoryControl.UI",
-        "projectPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.UI\\InventoryControl.UI.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.UI\\obj\\",
+        "projectPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.UI\\InventoryControl.UI.csproj",
+        "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.UI\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0-windows10.0.19041.0"
@@ -277,11 +232,11 @@
           "net8.0-windows10.0.19041": {
             "targetAlias": "net8.0-windows10.0.19041.0",
             "projectReferences": {
-              "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj": {
-                "projectPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj"
+              "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj": {
+                "projectPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Application\\InventoryControl.Application.csproj"
               },
-              "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\InventoryControl.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\Asus\\Desktop\\Empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\InventoryControl.Infrastructure.csproj"
+              "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\InventoryControl.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\chris\\OneDrive\\Escritorio\\empresariales\\Gestion-de-inventario\\InventoryControl\\InventoryControl.Infrastructure\\InventoryControl.Infrastructure.csproj"
               }
             }
           }
@@ -295,8 +250,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.200"
+        }
       },
       "frameworks": {
         "net8.0-windows10.0.19041": {
@@ -316,7 +270,11 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.Maui.Controls.Compatibility": {
+              "target": "Package",
+              "version": "[8.0.100, )"
             }
           },
           "imports": [
@@ -332,35 +290,24 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.25, 8.0.25]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
-            },
-            {
               "name": "Microsoft.Windows.SDK.NET.Ref",
-              "version": "[10.0.19041.57, 10.0.19041.57]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
+              "version": "[10.0.19041.31, 10.0.19041.31]"
             }
           ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             },
-            "Microsoft.Windows.SDK.NET.Ref.Windows": {
+            "Microsoft.Windows.SDK.NET.Ref": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
         }
       }
     }

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
+    x:Class="InventoryControl.UI.Views.MovementsPage"
+    x:DataType="vm:MovementsViewModel"
+    BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,Auto,*">
+
+        <!-- Top Bar -->
+        <Grid Grid.Row="0" BackgroundColor="{StaticResource Surface}"
+              Padding="20,14" ColumnDefinitions="*,Auto">
+            <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                <Label Text="StockFlow" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource Primary}" />
+                <Label Text="Movimientos de Inventario" Style="{StaticResource PageSubtitle}" />
+            </VerticalStackLayout>
+            <Button Grid.Column="1"
+                    Text="+ Registrar"
+                    Command="{Binding RegisterMovementCommand}"
+                    Style="{StaticResource PrimaryButton}"
+                    VerticalOptions="Center" />
+        </Grid>
+        <BoxView Grid.Row="0" VerticalOptions="End" HeightRequest="1" Color="{StaticResource Border}" />
+
+        <!-- Filtros -->
+        <ScrollView Grid.Row="1" Orientation="Horizontal" BackgroundColor="{StaticResource Surface}" Padding="16,10">
+            <HorizontalStackLayout Spacing="8">
+                <Border BackgroundColor="{StaticResource Background}"
+                        StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" StrokeThickness="1"
+                        Padding="12,8">
+                    <Label Text="Todos los tipos ▾" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                </Border>
+                <Border BackgroundColor="{StaticResource Background}"
+                        StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" StrokeThickness="1"
+                        Padding="12,8">
+                    <Label Text="Todos los motivos ▾" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                </Border>
+                <Border BackgroundColor="{StaticResource Background}"
+                        StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" StrokeThickness="1"
+                        Padding="12,8">
+                    <Label Text="dd-mm-aaaa 📅" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                </Border>
+            </HorizontalStackLayout>
+        </ScrollView>
+
+        <!-- Lista Movimientos -->
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Movements}" Margin="0,8,0,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="16,0,16,8" Padding="16" StrokeShape="RoundRectangle 12"
+                            BackgroundColor="{StaticResource Surface}"
+                            Stroke="{StaticResource Border}" StrokeThickness="1">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="4">
+
+                            <!-- Producto y SKU -->
+                            <Label Grid.Row="0" Grid.Column="0"
+                                   Text="{Binding ProductName}"
+                                   Style="{StaticResource CardTitle}" FontSize="15" />
+                            <Label Grid.Row="1" Grid.Column="0"
+                                   Text="{Binding Sku}"
+                                   Style="{StaticResource CardSubtitle}" />
+
+                            <!-- Badge tipo (Entrada/Salida) -->
+                            <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                                    Padding="12,6" StrokeShape="RoundRectangle 20"
+                                    BackgroundColor="{Binding TypeColor}"
+                                    VerticalOptions="Center">
+                                <Label Text="{Binding Type}" TextColor="White"
+                                       FontSize="12" FontAttributes="Bold" />
+                            </Border>
+
+                            <!-- Info inferior -->
+                            <HorizontalStackLayout Grid.Row="2" Grid.ColumnSpan="2" Spacing="16" Margin="0,6,0,0">
+                                <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
+                                       FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                                <Label Text="|" FontSize="12" TextColor="{StaticResource Border}" />
+                                <Label Text="{Binding Quantity, StringFormat='Cant: {0}'}"
+                                       FontSize="12" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="|" FontSize="12" TextColor="{StaticResource Border}" />
+                                <Label Text="{Binding Reason}"
+                                       FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                                <Label Text="|" FontSize="12" TextColor="{StaticResource Border}" />
+                                <Label Text="{Binding UserName}"
+                                       FontSize="12" TextColor="{StaticResource Primary}" />
+                            </HorizontalStackLayout>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
+                <BoxView HeightRequest="24" Color="Transparent" />
+            </CollectionView.Footer>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

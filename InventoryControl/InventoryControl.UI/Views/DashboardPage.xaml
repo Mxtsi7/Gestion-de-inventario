@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
+    x:Class="InventoryControl.UI.Views.DashboardPage"
+    x:DataType="vm:DashboardViewModel"
+    BackgroundColor="{StaticResource Background}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Top Bar -->
+            <Grid BackgroundColor="{StaticResource Surface}"
+                  Padding="20,14"
+                  ColumnDefinitions="*,Auto">
+                <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                    <Label Text="StockFlow" FontSize="20" FontAttributes="Bold"
+                           TextColor="{StaticResource Primary}" />
+                    <Label Text="Inicio" Style="{StaticResource PageSubtitle}" />
+                </VerticalStackLayout>
+                <Label Grid.Column="1" Text="🔔" FontSize="22" VerticalOptions="Center" />
+            </Grid>
+
+            <BoxView HeightRequest="1" Color="{StaticResource Border}" />
+
+            <!-- Stats Cards -->
+            <Grid Padding="16,16,16,0" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+
+                <!-- Total Productos -->
+                <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{StaticResource Surface}"
+                        StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="📦" FontSize="22" />
+                        <Label Text="{Binding TotalProducts}" Style="{StaticResource StatNumber}" />
+                        <Label Text="Total Productos" Style="{StaticResource StatLabel}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- En Stock -->
+                <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{StaticResource Surface}"
+                        StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="✅" FontSize="22" />
+                        <Label Text="{Binding InStock}" Style="{StaticResource StatNumber}" TextColor="{StaticResource Success}" />
+                        <Label Text="En Stock" Style="{StaticResource StatLabel}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Stock Bajo -->
+                <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource Surface}"
+                        StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="⚠️" FontSize="22" />
+                        <Label Text="{Binding LowStock}" Style="{StaticResource StatNumber}" TextColor="{StaticResource Warning}" />
+                        <Label Text="Stock Bajo" Style="{StaticResource StatLabel}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Movimientos Hoy -->
+                <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource Surface}"
+                        StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="📈" FontSize="22" />
+                        <Label Text="{Binding MovementsToday}" Style="{StaticResource StatNumber}" TextColor="{StaticResource Primary}" />
+                        <Label Text="Movimientos Hoy" Style="{StaticResource StatLabel}" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Alertas de Stock -->
+            <VerticalStackLayout Padding="16,20,16,0" Spacing="12">
+                <Label Text="Alertas de stock" Style="{StaticResource CardTitle}" />
+
+                <CollectionView ItemsSource="{Binding StockAlerts}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="{StaticResource WarningLight}"
+                                    StrokeShape="RoundRectangle 10" Stroke="Transparent" Padding="14,10" Margin="0,0,0,6">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label Grid.Column="0" Text="{Binding Name}"
+                                           FontSize="14" TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
+                                    <Label Grid.Column="1" Text="{Binding CurrentStock}"
+                                           FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Warning}" VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <!-- Últimos Movimientos -->
+            <VerticalStackLayout Padding="16,20,16,20" Spacing="12">
+                <Label Text="Últimos movimientos" Style="{StaticResource CardTitle}" />
+
+                <CollectionView ItemsSource="{Binding RecentMovements}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="{StaticResource Surface}"
+                                    StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1"
+                                    Padding="14,12" Margin="0,0,0,8">
+                                <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="Auto,Auto">
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding ProductName}"
+                                           Style="{StaticResource CardTitle}" FontSize="14" />
+                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding Sku}"
+                                           Style="{StaticResource CardSubtitle}" />
+                                    <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                                            Padding="10,5" StrokeShape="RoundRectangle 20"
+                                            BackgroundColor="{Binding TypeColor}"
+                                            VerticalOptions="Center" Margin="8,0">
+                                        <Label Text="{Binding Type}" TextColor="White"
+                                               FontSize="11" FontAttributes="Bold" />
+                                    </Border>
+                                    <Label Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+                                           Text="{Binding Quantity}" FontSize="18" FontAttributes="Bold"
+                                           TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
