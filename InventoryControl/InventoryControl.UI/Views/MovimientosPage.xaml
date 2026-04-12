@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="InventoryControl.UI.Views.MovimientosPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
+    BackgroundColor="{StaticResource ColorFondo}">
+
+    <ContentPage.BindingContext>
+        <vm:MovimientosViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <VerticalStackLayout Padding="16" Spacing="12">
+
+            <!-- NAVBAR -->
+            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                <Label FontAttributes="Bold" FontSize="20" Text="SigmaInventary" TextColor="{StaticResource ColorPrimario}" VerticalOptions="Center" />
+                <SearchBar Grid.Column="1" Placeholder="Buscar..." WidthRequest="220" />
+                <Border Grid.Column="2" BackgroundColor="{StaticResource ColorPrimario}" HeightRequest="36" StrokeShape="RoundRectangle 18" StrokeThickness="0" VerticalOptions="Center" WidthRequest="36">
+                    <Label FontAttributes="Bold" FontSize="13" HorizontalOptions="Center" Text="AU" TextColor="White" VerticalOptions="Center" />
+                </Border>
+            </Grid>
+
+            <!-- HEADER SECCIÓN -->
+            <Label FontAttributes="Bold" FontSize="18" Text="Movimientos de inventario" TextColor="{StaticResource ColorTexto}" />
+
+            <!-- TABLA HEADER -->
+            <Border BackgroundColor="{StaticResource ColorFondo}" Padding="10,8" StrokeShape="RoundRectangle 8 8 0 0" StrokeThickness="1" Stroke="{StaticResource ColorBorde}">
+                <Grid ColumnDefinitions="*,80,70,*,100,90" ColumnSpacing="8">
+                    <Label Style="{StaticResource LblHeader}" Text="PRODUCTO" />
+                    <Label Grid.Column="1" Style="{StaticResource LblHeader}" Text="TIPO" />
+                    <Label Grid.Column="2" Style="{StaticResource LblHeader}" Text="CANT." />
+                    <Label Grid.Column="3" Style="{StaticResource LblHeader}" Text="MOTIVO" />
+                    <Label Grid.Column="4" Style="{StaticResource LblHeader}" Text="FECHA" />
+                    <Label Grid.Column="5" Style="{StaticResource LblHeader}" Text="USUARIO" />
+                </Grid>
+            </Border>
+
+            <!-- FILAS -->
+            <CollectionView ItemsSource="{Binding Movimientos}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="{Binding FilaColor}" Padding="10,8" StrokeThickness="0,0,0,1" Stroke="{StaticResource ColorBorde}">
+                            <Grid ColumnDefinitions="*,80,70,*,100,90" ColumnSpacing="8">
+                                <Label FontAttributes="Bold" FontSize="13" Text="{Binding NombreProducto}" TextColor="{StaticResource ColorTexto}" VerticalOptions="Center" />
+                                <Border Grid.Column="1" BackgroundColor="{Binding TipoBadgeBg}" Padding="6,3" StrokeShape="RoundRectangle 6" StrokeThickness="0" VerticalOptions="Center">
+                                    <Label FontAttributes="Bold" FontSize="11" HorizontalOptions="Center" Text="{Binding Tipo}" TextColor="{Binding TipoBadgeFg}" />
+                                </Border>
+                                <Label Grid.Column="2" FontSize="13" Text="{Binding Cantidad}" TextColor="{StaticResource ColorTexto}" VerticalOptions="Center" />
+                                <Label Grid.Column="3" FontSize="13" Text="{Binding Motivo}" TextColor="{StaticResource ColorTexto}" VerticalOptions="Center" />
+                                <Label Grid.Column="4" FontSize="12" Text="{Binding FechaCorta}" TextColor="{StaticResource ColorTextoSuave}" VerticalOptions="Center" />
+                                <Label Grid.Column="5" FontSize="12" Text="{Binding Usuario}" TextColor="{StaticResource ColorTextoSuave}" VerticalOptions="Center" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+
+        <!-- Botón flotante -->
+        <Button
+            Command="{Binding AbrirModalCommand}"
+            HorizontalOptions="End"
+            Margin="0,0,24,24"
+            Style="{StaticResource BtnFlotante}"
+            Text="+ Registrar"
+            VerticalOptions="End" />
+    </Grid>
+</ContentPage>
