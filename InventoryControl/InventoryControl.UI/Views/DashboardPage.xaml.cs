@@ -4,16 +4,16 @@ namespace InventoryControl.UI.Views;
 
 public partial class DashboardPage : ContentPage
 {
-    public DashboardPage(DashboardViewModel viewModel)
+    public DashboardPage(DashboardViewModel vm)
     {
         InitializeComponent();
-        BindingContext = viewModel;
+        BindingContext = vm;
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
         if (BindingContext is DashboardViewModel vm)
-            vm.LoadDataCommand.Execute(null);
+            vm.CargarDashboardCommand.Execute(null);
     }
 }

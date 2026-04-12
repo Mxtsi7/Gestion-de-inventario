@@ -1,121 +1,292 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
+    x:Class="InventoryControl.UI.Views.DashboardPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
-    x:Class="InventoryControl.UI.Views.DashboardPage"
-    x:DataType="vm:DashboardViewModel"
-    BackgroundColor="{StaticResource Background}">
+    BackgroundColor="{StaticResource ColorFondo}">
+
+    <ContentPage.BindingContext>
+        <vm:DashboardViewModel />
+    </ContentPage.BindingContext>
 
     <ScrollView>
-        <VerticalStackLayout Spacing="0">
+        <VerticalStackLayout Padding="16" Spacing="16">
 
-            <!-- Top Bar -->
-            <Grid BackgroundColor="{StaticResource Surface}"
-                  Padding="20,14"
-                  ColumnDefinitions="*,Auto">
-                <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
-                    <Label Text="StockFlow" FontSize="20" FontAttributes="Bold"
-                           TextColor="{StaticResource Primary}" />
-                    <Label Text="Inicio" Style="{StaticResource PageSubtitle}" />
-                </VerticalStackLayout>
-                <Label Grid.Column="1" Text="🔔" FontSize="22" VerticalOptions="Center" />
-            </Grid>
-
-            <BoxView HeightRequest="1" Color="{StaticResource Border}" />
-
-            <!-- Stats Cards -->
-            <Grid Padding="16,16,16,0" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="12">
-
-                <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{StaticResource Surface}"
-                        StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
-                    <VerticalStackLayout Spacing="4">
-                        <Label Text="📦" FontSize="22" />
-                        <Label Text="{Binding TotalProducts}" Style="{StaticResource StatNumber}" />
-                        <Label Text="Total Productos" Style="{StaticResource StatLabel}" />
-                    </VerticalStackLayout>
-                </Border>
-
-                <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{StaticResource Surface}"
-                        StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
-                    <VerticalStackLayout Spacing="4">
-                        <Label Text="✅" FontSize="22" />
-                        <Label Text="{Binding InStock}" Style="{StaticResource StatNumber}" TextColor="{StaticResource Success}" />
-                        <Label Text="En Stock" Style="{StaticResource StatLabel}" />
-                    </VerticalStackLayout>
-                </Border>
-
-                <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource Surface}"
-                        StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
-                    <VerticalStackLayout Spacing="4">
-                        <Label Text="⚠️" FontSize="22" />
-                        <Label Text="{Binding LowStock}" Style="{StaticResource StatNumber}" TextColor="{StaticResource Warning}" />
-                        <Label Text="Stock Bajo" Style="{StaticResource StatLabel}" />
-                    </VerticalStackLayout>
-                </Border>
-
-                <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource Surface}"
-                        StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="16">
-                    <VerticalStackLayout Spacing="4">
-                        <Label Text="📈" FontSize="22" />
-                        <Label Text="{Binding MovementsToday}" Style="{StaticResource StatNumber}" TextColor="{StaticResource Primary}" />
-                        <Label Text="Movimientos Hoy" Style="{StaticResource StatLabel}" />
-                    </VerticalStackLayout>
+            <!-- ─── NAVBAR ─── -->
+            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Text="SigmaInventary"
+                    TextColor="{StaticResource ColorPrimario}"
+                    VerticalOptions="Center" />
+                <SearchBar
+                    Grid.Column="1"
+                    Placeholder="Buscar..."
+                    WidthRequest="220" />
+                <Border
+                    Grid.Column="2"
+                    BackgroundColor="{StaticResource ColorPrimario}"
+                    HeightRequest="36"
+                    StrokeShape="RoundRectangle 18"
+                    StrokeThickness="0"
+                    VerticalOptions="Center"
+                    WidthRequest="36">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="13"
+                        HorizontalOptions="Center"
+                        Text="AU"
+                        TextColor="White"
+                        VerticalOptions="Center" />
                 </Border>
             </Grid>
 
-            <!-- Alertas de Stock -->
-            <VerticalStackLayout Padding="16,20,16,0" Spacing="12">
-                <Label Text="Alertas de stock" Style="{StaticResource CardTitle}" />
+            <!-- ─── SECCIÓN A: 4 tarjetas métricas ─── -->
+            <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="12">
 
-                <CollectionView ItemsSource="{Binding StockAlerts}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="vm:StockAlertItem">
-                            <Border BackgroundColor="{StaticResource WarningLight}"
-                                    StrokeShape="RoundRectangle 10" Stroke="Transparent" Padding="14,10" Margin="0,0,0,6">
-                                <Grid ColumnDefinitions="*,Auto">
-                                    <Label Grid.Column="0" Text="{Binding Name}"
-                                           FontSize="14" TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
-                                    <Label Grid.Column="1" Text="{Binding CurrentStock}"
-                                           FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Warning}" VerticalOptions="Center" />
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </VerticalStackLayout>
+                <!-- Tarjeta 1: Total Productos -->
+                <Border Style="{StaticResource Tarjeta}">
+                    <VerticalStackLayout Spacing="8">
+                        <Border
+                            BackgroundColor="{StaticResource ColorPrimario}"
+                            HeightRequest="32"
+                            StrokeShape="RoundRectangle 8"
+                            StrokeThickness="0"
+                            WidthRequest="32">
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                Text="&#x1F4E6;"
+                                VerticalOptions="Center" />
+                        </Border>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="24"
+                            Text="{Binding TotalProductos}"
+                            TextColor="{StaticResource ColorTexto}" />
+                        <Label
+                            FontSize="12"
+                            Text="Total Productos"
+                            TextColor="{StaticResource ColorTextoSuave}" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <!-- Últimos Movimientos -->
-            <VerticalStackLayout Padding="16,20,16,20" Spacing="12">
-                <Label Text="Últimos movimientos" Style="{StaticResource CardTitle}" />
+                <!-- Tarjeta 2: En Stock -->
+                <Border Grid.Column="1" Style="{StaticResource Tarjeta}">
+                    <VerticalStackLayout Spacing="8">
+                        <Border
+                            BackgroundColor="{StaticResource ColorAcento1}"
+                            HeightRequest="32"
+                            StrokeShape="RoundRectangle 8"
+                            StrokeThickness="0"
+                            WidthRequest="32">
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                Text="✅"
+                                VerticalOptions="Center" />
+                        </Border>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="24"
+                            Text="{Binding ProductosEnStock}"
+                            TextColor="{StaticResource ColorTexto}" />
+                        <Label
+                            FontSize="12"
+                            Text="En Stock"
+                            TextColor="{StaticResource ColorTextoSuave}" />
+                    </VerticalStackLayout>
+                </Border>
 
-                <CollectionView ItemsSource="{Binding RecentMovements}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="vm:MovementItem">
-                            <Border BackgroundColor="{StaticResource Surface}"
-                                    StrokeShape="RoundRectangle 12" Stroke="{StaticResource Border}" StrokeThickness="1"
-                                    Padding="14,12" Margin="0,0,0,8">
-                                <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="Auto,Auto">
-                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding ProductName}"
-                                           Style="{StaticResource CardTitle}" FontSize="14" />
-                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding Sku}"
-                                           Style="{StaticResource CardSubtitle}" />
-                                    <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
-                                            Padding="10,5" StrokeShape="RoundRectangle 20"
-                                            BackgroundColor="{Binding TypeColor}"
-                                            VerticalOptions="Center" Margin="8,0">
-                                        <Label Text="{Binding Type}" TextColor="White"
-                                               FontSize="11" FontAttributes="Bold" />
+                <!-- Tarjeta 3: Stock Bajo -->
+                <Border Grid.Column="2" Style="{StaticResource Tarjeta}">
+                    <VerticalStackLayout Spacing="8">
+                        <Border
+                            BackgroundColor="{StaticResource ColorAcento3}"
+                            HeightRequest="32"
+                            StrokeShape="RoundRectangle 8"
+                            StrokeThickness="0"
+                            WidthRequest="32">
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                Text="⚠️"
+                                VerticalOptions="Center" />
+                        </Border>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="24"
+                            Text="{Binding ProductosStockBajo}"
+                            TextColor="{StaticResource ColorTexto}" />
+                        <Label
+                            FontSize="12"
+                            Text="Stock Bajo"
+                            TextColor="{StaticResource ColorTextoSuave}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Tarjeta 4: Movimientos Hoy -->
+                <Border Grid.Column="3" Style="{StaticResource Tarjeta}">
+                    <VerticalStackLayout Spacing="8">
+                        <Border
+                            BackgroundColor="{StaticResource ColorAcento2}"
+                            HeightRequest="32"
+                            StrokeShape="RoundRectangle 8"
+                            StrokeThickness="0"
+                            WidthRequest="32">
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                Text="🔄"
+                                VerticalOptions="Center" />
+                        </Border>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="24"
+                            Text="{Binding MovimientosHoy}"
+                            TextColor="{StaticResource ColorTexto}" />
+                        <Label
+                            FontSize="12"
+                            Text="Movimientos Hoy"
+                            TextColor="{StaticResource ColorTextoSuave}" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- ─── SECCIÓN B: Gráfico + Alertas ─── -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+
+                <!-- Actividad semanal -->
+                <Border Style="{StaticResource Tarjeta}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            Text="Actividad semanal"
+                            TextColor="{StaticResource ColorTexto}" />
+                        <GraphicsView
+                            Drawable="{Binding GraficoSemanal}"
+                            HeightRequest="140"
+                            HorizontalOptions="Fill" />
+                        <Grid ColumnDefinitions="*,*,*,*,*,*,*">
+                            <Label FontSize="10" HorizontalOptions="Center" Text="Lun" TextColor="{StaticResource ColorTextoSuave}" />
+                            <Label Grid.Column="1" FontSize="10" HorizontalOptions="Center" Text="Mar" TextColor="{StaticResource ColorTextoSuave}" />
+                            <Label Grid.Column="2" FontSize="10" HorizontalOptions="Center" Text="Mié" TextColor="{StaticResource ColorTextoSuave}" />
+                            <Label Grid.Column="3" FontSize="10" HorizontalOptions="Center" Text="Jue" TextColor="{StaticResource ColorTextoSuave}" />
+                            <Label Grid.Column="4" FontSize="10" HorizontalOptions="Center" Text="Vie" TextColor="{StaticResource ColorTextoSuave}" />
+                            <Label Grid.Column="5" FontSize="10" HorizontalOptions="Center" Text="Sáb" TextColor="{StaticResource ColorTextoSuave}" />
+                            <Label Grid.Column="6" FontSize="10" HorizontalOptions="Center" Text="Dom" TextColor="{StaticResource ColorTextoSuave}" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Alertas de stock -->
+                <Border Grid.Column="1" Style="{StaticResource Tarjeta}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            Text="Alertas de stock"
+                            TextColor="{StaticResource ColorTexto}" />
+                        <CollectionView ItemsSource="{Binding AlertasStock}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,80,Auto" ColumnSpacing="8" Padding="0,4">
+                                        <Label
+                                            FontSize="13"
+                                            Text="{Binding NombreProducto}"
+                                            TextColor="{StaticResource ColorTexto}"
+                                            VerticalOptions="Center" />
+                                        <ProgressBar
+                                            Grid.Column="1"
+                                            Progress="{Binding PorcentajeStock}"
+                                            ProgressColor="{StaticResource ColorAcento3}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Column="2"
+                                            FontSize="12"
+                                            Text="{Binding CantidadActual}"
+                                            TextColor="{StaticResource ColorAcento2}"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- ─── SECCIÓN C: Últimos movimientos ─── -->
+            <Border Style="{StaticResource Tarjeta}">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        Text="Últimos movimientos"
+                        TextColor="{StaticResource ColorTexto}" />
+
+                    <!-- Header -->
+                    <Grid ColumnDefinitions="*,80,80,60,80" ColumnSpacing="8">
+                        <Label Style="{StaticResource LblHeader}" Text="PRODUCTO" />
+                        <Label Grid.Column="1" Style="{StaticResource LblHeader}" Text="SKU" />
+                        <Label Grid.Column="2" Style="{StaticResource LblHeader}" Text="TIPO" />
+                        <Label Grid.Column="3" Style="{StaticResource LblHeader}" Text="CANT." />
+                        <Label Grid.Column="4" Style="{StaticResource LblHeader}" Text="FECHA" />
+                    </Grid>
+
+                    <BoxView HeightRequest="1" Color="{StaticResource ColorBorde}" />
+
+                    <CollectionView ItemsSource="{Binding UltimosMovimientos}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*,80,80,60,80" ColumnSpacing="8" Padding="0,6">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="13"
+                                        Text="{Binding NombreProducto}"
+                                        TextColor="{StaticResource ColorTexto}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="1"
+                                        FontSize="12"
+                                        Text="{Binding SKU}"
+                                        TextColor="{StaticResource ColorTextoSuave}"
+                                        VerticalOptions="Center" />
+                                    <!-- Badge tipo -->
+                                    <Border
+                                        Grid.Column="2"
+                                        BackgroundColor="{Binding TipoBadgeBg}"
+                                        Padding="6,3"
+                                        StrokeShape="RoundRectangle 6"
+                                        StrokeThickness="0"
+                                        VerticalOptions="Center">
+                                        <Label
+                                            FontSize="11"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Tipo}"
+                                            TextColor="{Binding TipoBadgeFg}" />
                                     </Border>
-                                    <Label Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
-                                           Text="{Binding Quantity}" FontSize="18" FontAttributes="Bold"
-                                           TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="3"
+                                        FontSize="13"
+                                        Text="{Binding Cantidad}"
+                                        TextColor="{StaticResource ColorTexto}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="4"
+                                        FontSize="12"
+                                        Text="{Binding FechaCorta}"
+                                        TextColor="{StaticResource ColorTextoSuave}"
+                                        VerticalOptions="Center" />
                                 </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </VerticalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>
