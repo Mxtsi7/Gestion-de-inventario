@@ -1,9 +1,10 @@
 using InventoryControl.Domain.Entities;
 using InventoryControl.Domain.Interfaces;
+using MediatR;
 
 namespace InventoryControl.Application.Commands.RegisterProduct;
 
-public class RegisterProductHandler
+public class RegisterProductHandler : IRequestHandler<RegisterProductCommand, Guid>
 {
     private readonly IProductRepository _repository;
 
@@ -12,7 +13,7 @@ public class RegisterProductHandler
         _repository = repository;
     }
 
-    public async Task<Guid> HandleAsync(RegisterProductCommand command, CancellationToken ct = default)
+    public async Task<Guid> Handle(RegisterProductCommand command, CancellationToken ct)
     {
         var product = new Product(
             command.Name,
