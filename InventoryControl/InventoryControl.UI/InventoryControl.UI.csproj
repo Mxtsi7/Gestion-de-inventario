@@ -11,13 +11,14 @@
     <ApplicationId>com.inventorycontrol.app</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <!-- Unpackaged: no requiere MSIX ni Windows App Runtime instalado en el sistema -->
     <WindowsPackageType>None</WindowsPackageType>
-    <!-- Suprime advertencias de conflicto de tipos en WindowsAppSDK y RID -->
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <NoWarn>$(NoWarn);CS0436;NETSDK1206</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Usamos 8.0.14 que trae WindowsAppSDK 1.5 y elimina los CS0436 -->
     <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
