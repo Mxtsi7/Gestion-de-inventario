@@ -1,3 +1,5 @@
+using MediatR;
+
 namespace InventoryControl.Application.Commands.RegisterProduct;
 
 public record RegisterProductCommand(
@@ -6,4 +8,4 @@ public record RegisterProductCommand(
     string Category,
     decimal UnitPrice,
     int MinimumStockThreshold
-);
+) : IRequest<Guid>;
