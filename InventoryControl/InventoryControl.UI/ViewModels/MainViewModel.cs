@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MediatR;
+using InventoryControl.Application.DTOs;
 using InventoryControl.Application.Queries.GetProductList;
 using InventoryControl.UI.Views;
 using Microsoft.Maui.Controls;
