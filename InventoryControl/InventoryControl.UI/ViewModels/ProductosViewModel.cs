@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using InventoryControl.Domain.Interfaces;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 using System.Collections.ObjectModel;
 
@@ -45,9 +46,9 @@ public partial class ProductosViewModel : ObservableObject
             Precio = p.UnitPrice,
             Estado = p.GetStockLevelStatus() switch
             {
-                "OK" => "Disponible",
+                "OK"  => "Disponible",
                 "LOW" => "Stock bajo",
-                _ => "Agotado"
+                _     => "Agotado"
             },
             Indice = i
         }).ToList();
@@ -62,19 +63,26 @@ public partial class ProductosViewModel : ObservableObject
     private void AplicarFiltros()
     {
         var filtrado = _todos.AsEnumerable();
+
         if (!string.IsNullOrWhiteSpace(TextoBusqueda))
             filtrado = filtrado.Where(p =>
                 p.Nombre.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase) ||
                 p.SKU.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase));
+
         if (!string.IsNullOrEmpty(CategoriaSeleccionada))
             filtrado = filtrado.Where(p => p.Categoria == CategoriaSeleccionada);
+
         if (!string.IsNullOrEmpty(EstadoSeleccionado) && EstadoSeleccionado != "Todos")
             filtrado = filtrado.Where(p => p.Estado == EstadoSeleccionado);
 
         var lista = filtrado.ToList();
         TotalPaginas = Math.Max(1, (int)Math.Ceiling(lista.Count / (double)ItemsPorPagina));
         PaginaActual = Math.Min(PaginaActual, TotalPaginas);
-        var pagina = lista.Skip((PaginaActual - 1) * ItemsPorPagina).Take(ItemsPorPagina).ToList();
+
+        var pagina = lista
+            .Skip((PaginaActual - 1) * ItemsPorPagina)
+            .Take(ItemsPorPagina)
+            .ToList();
 
         ProductosFiltrados.Clear();
         foreach (var p in pagina) ProductosFiltrados.Add(p);
@@ -108,9 +116,13 @@ public partial class ProductosViewModel : ObservableObject
     [RelayCommand]
     private async Task EliminarProducto(Guid id)
     {
-        bool ok = await Application.Current!.MainPage!.DisplayAlert(
+        var mainPage = Microsoft.Maui.Controls.Application.Current?.MainPage;
+        if (mainPage is null) return;
+
+        bool ok = await mainPage.DisplayAlert(
             "Eliminar", "¿Eliminar este producto?", "Sí", "No");
         if (!ok) return;
+
         await _repo.DeleteAsync(id);
         await CargarProductosAsync();
     }
@@ -128,17 +140,22 @@ public class ProductoFilaDto
     public string Estado { get; set; } = string.Empty;
     public int Indice { get; set; }
 
-    public Color FilaColor => Indice % 2 == 0 ? Color.FromArgb("#FFFFFF") : Color.FromArgb("#F8F7FF");
+    public Color FilaColor => Indice % 2 == 0
+        ? Color.FromArgb("#FFFFFF")
+        : Color.FromArgb("#F8F7FF");
+
     public Color StockColor => Estado == "Disponible"
         ? Color.FromArgb("#0a8a6e")
         : Estado == "Stock bajo"
             ? Color.FromArgb("#c47a00")
             : Color.FromArgb("#c94040");
+
     public Color EstadoBadgeBg => Estado == "Disponible"
         ? Color.FromArgb("#e0fbf5")
         : Estado == "Stock bajo"
             ? Color.FromArgb("#fff4e0")
             : Color.FromArgb("#fff0ef");
+
     public Color EstadoBadgeFg => Estado == "Disponible"
         ? Color.FromArgb("#0a8a6e")
         : Estado == "Stock bajo"

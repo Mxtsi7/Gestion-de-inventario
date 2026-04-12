@@ -2,6 +2,7 @@ using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using InventoryControl.UI.Popups;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 using System.Collections.ObjectModel;
 
@@ -21,7 +22,6 @@ public partial class MovimientosViewModel : ObservableObject
     [RelayCommand]
     private Task CargarMovimientos()
     {
-        // Aquí se conectará al repositorio de movimientos cuando exista
         Movimientos.Clear();
         return Task.CompletedTask;
     }
@@ -30,7 +30,9 @@ public partial class MovimientosViewModel : ObservableObject
     private async Task AbrirModal()
     {
         var popup = new RegistrarMovimientoPopup(_popupVm);
-        await Application.Current!.MainPage!.ShowPopupAsync(popup);
+        var mainPage = Microsoft.Maui.Controls.Application.Current?.MainPage;
+        if (mainPage is not null)
+            await mainPage.ShowPopupAsync(popup);
         await CargarMovimientos();
     }
 }
