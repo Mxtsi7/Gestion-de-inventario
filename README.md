@@ -36,10 +36,11 @@ Aplicación de control de inventario desarrollada con **.NET MAUI** y **C#**, si
 Debes instalar todo lo siguiente **en orden** antes de ejecutar el proyecto:
 
 ### 1. .NET 8 SDK
-Descarga e instala desde:
-[https://dotnet.microsoft.com/en-us/download/dotnet/8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+Descarga e instala desde: ser una version 8.x.x para que funcione
+[https://dotnet.microsoft.com/en-us/download/dotnet/8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) 
 
-"debes instalar las extensiones de c# dev kit y .net maui"
+
+"debes instalar las extensiones de c# dev kit y .net maui para poder correr la aplicacion"
 
 Verifica la instalación:
 ```bash
