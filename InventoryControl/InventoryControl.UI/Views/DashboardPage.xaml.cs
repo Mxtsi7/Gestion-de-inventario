@@ -13,7 +13,9 @@ public partial class DashboardPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        // CommunityToolkit.Mvvm elimina el sufijo Async:
+        // método CargarDashboardAsync() → genera CargarDashboardCommand
         if (BindingContext is DashboardViewModel vm)
-            vm.CargarDashboardAsyncCommand.Execute(null);
+            vm.CargarDashboardCommand.Execute(null);
     }
 }

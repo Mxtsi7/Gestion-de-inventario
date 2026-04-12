@@ -13,7 +13,8 @@ public partial class ProductosPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        // método CargarProductos() → genera CargarProductosCommand
         if (BindingContext is ProductosViewModel vm)
-            vm.CargarProductosAsyncCommand.Execute(null);
+            vm.CargarProductosCommand.Execute(null);
     }
 }
