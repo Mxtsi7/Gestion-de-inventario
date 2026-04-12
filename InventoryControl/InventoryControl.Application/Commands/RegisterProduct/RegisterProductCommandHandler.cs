@@ -1,31 +1,27 @@
-using MediatR;
 using InventoryControl.Domain.Entities;
 using InventoryControl.Domain.Interfaces;
 
 namespace InventoryControl.Application.Commands.RegisterProduct;
 
-// Business logic executing the instruction
-public class RegisterProductCommandHandler : IRequestHandler<RegisterProductCommand, Guid>
+public class RegisterProductHandler
 {
     private readonly IProductRepository _repository;
 
-    public RegisterProductCommandHandler(IProductRepository repository)
+    public RegisterProductHandler(IProductRepository repository)
     {
         _repository = repository;
     }
 
-    public async Task<Guid> Handle(RegisterProductCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> HandleAsync(RegisterProductCommand command, CancellationToken ct = default)
     {
         var product = new Product(
-            request.Name,
-            request.Sku,
-            request.Category,
-            request.UnitPrice,
-            request.MinimumStockThreshold
+            command.Name,
+            command.Sku,
+            command.Category,
+            command.UnitPrice,
+            command.MinimumStockThreshold
         );
-
-        await _repository.AddAsync(product, cancellationToken);
-
+        await _repository.AddAsync(product, ct);
         return product.Id;
     }
 }

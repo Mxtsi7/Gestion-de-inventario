@@ -6,7 +6,7 @@ public record ProductDto(
     string Sku,
     string Category,
     decimal UnitPrice,
-    int CurrentStock,
     int MinimumStockThreshold,
-    string StatusBadge
+    int CurrentStock,
+    string StockStatus
 );

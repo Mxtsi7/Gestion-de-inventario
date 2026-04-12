@@ -30,4 +30,14 @@ public class ProductRepository : IProductRepository
         _context.Products.Update(product);
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var product = await _context.Products.FindAsync(new object[] { id }, cancellationToken);
+        if (product is not null)
+        {
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+    }
 }
