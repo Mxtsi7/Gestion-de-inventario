@@ -102,9 +102,9 @@
                                 <!-- Badge estado -->
                                 <VerticalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
                                     <Border Padding="10,5" StrokeShape="RoundRectangle 20"
-                                            BackgroundColor="{Binding StatusBadge, Converter={StaticResource StatusColor}}"
+                                            BackgroundColor="{Binding StockStatus, Converter={StaticResource StatusColor}}"
                                             HorizontalOptions="End">
-                                        <Label Text="{Binding StatusBadge}" TextColor="White"
+                                        <Label Text="{Binding StockStatus}" TextColor="White"
                                                FontSize="11" FontAttributes="Bold" />
                                     </Border>
                                 </VerticalStackLayout>
