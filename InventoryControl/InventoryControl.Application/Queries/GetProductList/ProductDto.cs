@@ -1,12 +1,3 @@
-namespace InventoryControl.Application.Queries.GetProductList;
-
-// Basic response DTO optimized for read operations
-public record ProductDto(
-    Guid Id,
-    string Name,
-    string Sku,
-    string Category,
-    decimal UnitPrice,
-    int CurrentStock,
-    string StatusBadge
-);
+// Este archivo fue eliminado: usar InventoryControl.Application.DTOs.ProductDto como DTO canónico.
+// Se mantiene vacío para no romper referencias de namespace en el handler.
+namespace InventityControl.Application.Queries.GetProductList;
