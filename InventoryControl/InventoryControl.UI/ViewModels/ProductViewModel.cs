@@ -1,17 +1,17 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using MediatR;
 using InventoryControl.Application.Commands.DeleteProduct;
 using InventoryControl.Application.Commands.RegisterProduct;
 using InventoryControl.Application.DTOs;
-using InventoryControl.Application.Queries;
+using InventoryControl.Application.Queries.GetProductList;
+using Microsoft.Maui.Controls;
 
 namespace InventoryControl.UI.ViewModels;
 
 public class ProductViewModel : BindableObject
 {
-    private readonly GetAllProductsHandler _getAllHandler;
-    private readonly RegisterProductHandler _registerHandler;
-    private readonly DeleteProductHandler _deleteHandler;
+    private readonly IMediator _mediator;
 
     public ObservableCollection<ProductDto> Products { get; } = new();
 
@@ -25,23 +25,18 @@ public class ProductViewModel : BindableObject
     public ICommand CreateCommand { get; }
     public ICommand DeleteCommand { get; }
 
-    public ProductViewModel(
-        GetAllProductsHandler getAllHandler,
-        RegisterProductHandler registerHandler,
-        DeleteProductHandler deleteHandler)
+    public ProductViewModel(IMediator mediator)
     {
-        _getAllHandler = getAllHandler;
-        _registerHandler = registerHandler;
-        _deleteHandler = deleteHandler;
+        _mediator = mediator;
 
-        LoadCommand = new Command(async () => await LoadAsync());
+        LoadCommand   = new Command(async () => await LoadAsync());
         CreateCommand = new Command(async () => await CreateAsync());
         DeleteCommand = new Command<Guid>(async (id) => await DeleteAsync(id));
     }
 
     private async Task LoadAsync()
     {
-        var items = await _getAllHandler.HandleAsync();
+        var items = await _mediator.Send(new GetProductListQuery());
         Products.Clear();
         foreach (var item in items)
             Products.Add(item);
@@ -50,13 +45,13 @@ public class ProductViewModel : BindableObject
     private async Task CreateAsync()
     {
         var cmd = new RegisterProductCommand(NewName, NewSku, NewCategory, NewUnitPrice, NewMinStock);
-        await _registerHandler.HandleAsync(cmd);
+        await _mediator.Send(cmd);
         await LoadAsync();
     }
 
     private async Task DeleteAsync(Guid id)
     {
-        await _deleteHandler.HandleAsync(new DeleteProductCommand(id));
+        await _mediator.Send(new DeleteProductCommand(id));
         await LoadAsync();
     }
 }
