@@ -11,11 +11,18 @@ public class MainViewModel : BindableObject
 {
     private readonly IMediator _mediator;
     private ObservableCollection<ProductDto> _products = new();
+    private bool _isLoading;
 
     public ObservableCollection<ProductDto> Products
     {
         get => _products;
         set { _products = value; OnPropertyChanged(); }
+    }
+
+    public bool IsLoading
+    {
+        get => _isLoading;
+        set { _isLoading = value; OnPropertyChanged(); }
     }
 
     public ICommand LoadProductsCommand { get; }
@@ -25,17 +32,26 @@ public class MainViewModel : BindableObject
     {
         _mediator = mediator;
         LoadProductsCommand = new Command(async () => await LoadProductsAsync());
-        GoToFormCommand = new Command(async () => await Shell.Current.GoToAsync(nameof(ProductFormPage)));
+        GoToFormCommand = new Command(async () =>
+        {
+            if (Shell.Current is not null)
+                await Shell.Current.GoToAsync(nameof(ProductFormPage));
+        });
     }
 
     private async Task LoadProductsAsync()
     {
-        var result = await _mediator.Send(new GetProductListQuery());
-
-        Products.Clear();
-        foreach (var item in result)
+        IsLoading = true;
+        try
         {
-            Products.Add(item);
+            var result = await _mediator.Send(new GetProductListQuery());
+            Products.Clear();
+            foreach (var item in result)
+                Products.Add(item);
+        }
+        finally
+        {
+            IsLoading = false;
         }
     }
 }

@@ -41,7 +41,7 @@ public static class MauiProgram
         // FluentValidation
         builder.Services.AddValidatorsFromAssemblyContaining<RegisterProductCommandValidator>();
 
-        // ViewModels & Views
+        // ViewModels y Views — Transient para forms, Singleton para main
         builder.Services.AddTransient<MainViewModel>();
         builder.Services.AddTransient<ProductFormViewModel>();
         builder.Services.AddTransient<MainPage>();
@@ -49,7 +49,7 @@ public static class MauiProgram
 
         var app = builder.Build();
 
-        // Auto-migrate DB on startup
+        // Crear/migrar BD al iniciar
         using var scope = app.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         db.Database.EnsureCreated();
