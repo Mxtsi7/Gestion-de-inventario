@@ -3,12 +3,7 @@
     x:Class="InventoryControl.UI.Views.MovimientosPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
     BackgroundColor="{StaticResource ColorFondo}">
-
-    <ContentPage.BindingContext>
-        <vm:MovimientosViewModel />
-    </ContentPage.BindingContext>
 
     <Grid>
         <VerticalStackLayout Padding="16" Spacing="12">
@@ -22,11 +17,10 @@
                 </Border>
             </Grid>
 
-            <!-- HEADER SECCIÓN -->
             <Label FontAttributes="Bold" FontSize="18" Text="Movimientos de inventario" TextColor="{StaticResource ColorTexto}" />
 
-            <!-- TABLA HEADER -->
-            <Border BackgroundColor="{StaticResource ColorFondo}" Padding="10,8" StrokeShape="RoundRectangle 8 8 0 0" StrokeThickness="1" Stroke="{StaticResource ColorBorde}">
+            <!-- HEADER TABLA -->
+            <Border BackgroundColor="{StaticResource ColorFondo}" Padding="10,8" Stroke="{StaticResource ColorBorde}" StrokeShape="RoundRectangle 8 8 0 0" StrokeThickness="1">
                 <Grid ColumnDefinitions="*,80,70,*,100,90" ColumnSpacing="8">
                     <Label Style="{StaticResource LblHeader}" Text="PRODUCTO" />
                     <Label Grid.Column="1" Style="{StaticResource LblHeader}" Text="TIPO" />
@@ -64,8 +58,12 @@
             Command="{Binding AbrirModalCommand}"
             HorizontalOptions="End"
             Margin="0,0,24,24"
-            Style="{StaticResource BtnFlotante}"
+            BackgroundColor="{StaticResource ColorPrimario}"
+            CornerRadius="28"
+            FontAttributes="Bold"
+            Padding="14,12"
             Text="+ Registrar"
+            TextColor="White"
             VerticalOptions="End" />
     </Grid>
 </ContentPage>

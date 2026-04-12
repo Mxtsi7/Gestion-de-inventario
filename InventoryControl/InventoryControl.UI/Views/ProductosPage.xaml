@@ -6,29 +6,13 @@
     xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
     BackgroundColor="{StaticResource ColorFondo}">
 
-    <ContentPage.BindingContext>
-        <vm:ProductosViewModel />
-    </ContentPage.BindingContext>
-
     <VerticalStackLayout Padding="16" Spacing="12">
 
         <!-- NAVBAR -->
         <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
-            <Label
-                FontAttributes="Bold"
-                FontSize="20"
-                Text="SigmaInventary"
-                TextColor="{StaticResource ColorPrimario}"
-                VerticalOptions="Center" />
+            <Label FontAttributes="Bold" FontSize="20" Text="SigmaInventary" TextColor="{StaticResource ColorPrimario}" VerticalOptions="Center" />
             <SearchBar Grid.Column="1" Placeholder="Buscar..." WidthRequest="220" />
-            <Border
-                Grid.Column="2"
-                BackgroundColor="{StaticResource ColorPrimario}"
-                HeightRequest="36"
-                StrokeShape="RoundRectangle 18"
-                StrokeThickness="0"
-                VerticalOptions="Center"
-                WidthRequest="36">
+            <Border Grid.Column="2" BackgroundColor="{StaticResource ColorPrimario}" HeightRequest="36" StrokeShape="RoundRectangle 18" StrokeThickness="0" VerticalOptions="Center" WidthRequest="36">
                 <Label FontAttributes="Bold" FontSize="13" HorizontalOptions="Center" Text="AU" TextColor="White" VerticalOptions="Center" />
             </Border>
         </Grid>
@@ -39,28 +23,15 @@
                 Placeholder="Buscar producto..."
                 Text="{Binding TextoBusqueda}"
                 WidthRequest="260" />
-            <Border
-                Padding="4,0"
-                StrokeShape="RoundRectangle 8"
-                StrokeThickness="1"
-                Stroke="{StaticResource ColorBorde}"
-                BackgroundColor="{StaticResource ColorSuperficie}">
+            <Border Padding="4,0" Stroke="{StaticResource ColorBorde}" StrokeShape="RoundRectangle 8" StrokeThickness="1">
                 <Picker
                     ItemsSource="{Binding Categorias}"
                     SelectedItem="{Binding CategoriaSeleccionada}"
                     Title="Categoría"
                     WidthRequest="140" />
             </Border>
-            <Border
-                Padding="4,0"
-                StrokeShape="RoundRectangle 8"
-                StrokeThickness="1"
-                Stroke="{StaticResource ColorBorde}"
-                BackgroundColor="{StaticResource ColorSuperficie}">
-                <Picker
-                    SelectedItem="{Binding EstadoSeleccionado}"
-                    Title="Estado"
-                    WidthRequest="130">
+            <Border Padding="4,0" Stroke="{StaticResource ColorBorde}" StrokeShape="RoundRectangle 8" StrokeThickness="1">
+                <Picker SelectedItem="{Binding EstadoSeleccionado}" WidthRequest="130">
                     <Picker.Items>
                         <x:String>Todos</x:String>
                         <x:String>Disponible</x:String>
@@ -70,19 +41,16 @@
                 </Picker>
             </Border>
             <Button
+                BackgroundColor="{StaticResource ColorPrimario}"
                 Command="{Binding AgregarProductoCommand}"
-                Style="{StaticResource BtnPrimario}"
-                Text="+ Agregar" />
+                CornerRadius="8"
+                Text="+ Agregar"
+                TextColor="White" />
         </HorizontalStackLayout>
 
-        <!-- TABLA HEADER (fijo) -->
-        <Border
-            BackgroundColor="{StaticResource ColorFondo}"
-            Padding="10,8"
-            StrokeShape="RoundRectangle 8 8 0 0"
-            StrokeThickness="1"
-            Stroke="{StaticResource ColorBorde}">
-            <Grid ColumnDefinitions="*,80,90,60,50,80,90,80" ColumnSpacing="8">
+        <!-- HEADER TABLA -->
+        <Border BackgroundColor="{StaticResource ColorFondo}" Padding="10,8" Stroke="{StaticResource ColorBorde}" StrokeShape="RoundRectangle 8 8 0 0" StrokeThickness="1">
+            <Grid ColumnDefinitions="*,80,100,60,50,80,90,80" ColumnSpacing="8">
                 <Label Style="{StaticResource LblHeader}" Text="NOMBRE" />
                 <Label Grid.Column="1" Style="{StaticResource LblHeader}" Text="SKU" />
                 <Label Grid.Column="2" Style="{StaticResource LblHeader}" Text="CATEGORÍA" />
@@ -94,55 +62,36 @@
             </Grid>
         </Border>
 
-        <!-- TABLA FILAS -->
+        <!-- FILAS -->
         <CollectionView ItemsSource="{Binding ProductosFiltrados}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border
-                        BackgroundColor="{Binding FilaColor}"
-                        Padding="10,8"
-                        StrokeThickness="0,0,0,1"
-                        Stroke="{StaticResource ColorBorde}">
-                        <Grid ColumnDefinitions="*,80,90,60,50,80,90,80" ColumnSpacing="8">
+                    <Border BackgroundColor="{Binding FilaColor}" Padding="10,8" Stroke="{StaticResource ColorBorde}" StrokeShape="RoundRectangle 0" StrokeThickness="0,0,0,1">
+                        <Grid ColumnDefinitions="*,80,100,60,50,80,90,80" ColumnSpacing="8">
                             <Label FontAttributes="Bold" FontSize="13" Text="{Binding Nombre}" TextColor="{StaticResource ColorTexto}" VerticalOptions="Center" />
                             <Label Grid.Column="1" FontSize="12" Text="{Binding SKU}" TextColor="{StaticResource ColorTextoSuave}" VerticalOptions="Center" />
                             <Label Grid.Column="2" FontSize="13" Text="{Binding Categoria}" TextColor="{StaticResource ColorTexto}" VerticalOptions="Center" />
                             <Label Grid.Column="3" FontAttributes="Bold" FontSize="13" Text="{Binding StockActual}" TextColor="{Binding StockColor}" VerticalOptions="Center" />
                             <Label Grid.Column="4" FontSize="12" Text="{Binding StockMinimo}" TextColor="{StaticResource ColorTextoSuave}" VerticalOptions="Center" />
                             <Label Grid.Column="5" FontSize="13" Text="{Binding Precio, StringFormat='${0:N2}'}" TextColor="{StaticResource ColorTexto}" VerticalOptions="Center" />
-                            <!-- Badge estado -->
-                            <Border
-                                Grid.Column="6"
-                                BackgroundColor="{Binding EstadoBadgeBg}"
-                                Padding="6,3"
-                                StrokeShape="RoundRectangle 6"
-                                StrokeThickness="0"
-                                VerticalOptions="Center">
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="11"
-                                    HorizontalOptions="Center"
-                                    Text="{Binding Estado}"
-                                    TextColor="{Binding EstadoBadgeFg}" />
+                            <Border Grid.Column="6" BackgroundColor="{Binding EstadoBadgeBg}" Padding="6,3" StrokeShape="RoundRectangle 6" StrokeThickness="0" VerticalOptions="Center">
+                                <Label FontAttributes="Bold" FontSize="11" HorizontalOptions="Center" Text="{Binding Estado}" TextColor="{Binding EstadoBadgeFg}" />
                             </Border>
-                            <!-- Acciones -->
                             <HorizontalStackLayout Grid.Column="7" Spacing="8" VerticalOptions="Center">
                                 <Button
                                     BackgroundColor="Transparent"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProductosViewModel}}, Path=EditarProductoCommand}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditarProductoCommand}"
                                     CommandParameter="{Binding .}"
                                     FontSize="16"
                                     Text="✏️"
-                                    TextColor="{StaticResource ColorPrimario}"
-                                    WidthRequest="32" />
+                                    Padding="4" />
                                 <Button
                                     BackgroundColor="Transparent"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProductosViewModel}}, Path=EliminarProductoCommand}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarProductoCommand}"
                                     CommandParameter="{Binding Id}"
                                     FontSize="16"
                                     Text="🗑️"
-                                    TextColor="{StaticResource ColorTextoSuave}"
-                                    WidthRequest="32" />
+                                    Padding="4" />
                             </HorizontalStackLayout>
                         </Grid>
                     </Border>
@@ -152,31 +101,17 @@
 
         <!-- PAGINACIÓN -->
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
-            <Button
-                Command="{Binding PaginaAnteriorCommand}"
-                Style="{StaticResource BtnSecundario}"
-                Text="←"
-                WidthRequest="40" />
-            <Label
-                FontSize="13"
-                Text="{Binding PaginaActual}"
-                TextColor="{StaticResource ColorTexto}"
-                VerticalOptions="Center" />
-            <Label
-                FontSize="13"
-                Text="/"
-                TextColor="{StaticResource ColorTextoSuave}"
-                VerticalOptions="Center" />
-            <Label
-                FontSize="13"
-                Text="{Binding TotalPaginas}"
-                TextColor="{StaticResource ColorTexto}"
-                VerticalOptions="Center" />
-            <Button
-                Command="{Binding PaginaSiguienteCommand}"
-                Style="{StaticResource BtnSecundario}"
-                Text="→"
-                WidthRequest="40" />
+            <Button Command="{Binding PaginaAnteriorCommand}" CornerRadius="8" Text="←" />
+            <Label FontSize="13" VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding PaginaActual}" />
+                        <Span Text=" / " />
+                        <Span Text="{Binding TotalPaginas}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Button Command="{Binding PaginaSiguienteCommand}" CornerRadius="8" Text="→" />
         </HorizontalStackLayout>
 
     </VerticalStackLayout>

@@ -14,6 +14,6 @@ public partial class ProductosPage : ContentPage
     {
         base.OnAppearing();
         if (BindingContext is ProductosViewModel vm)
-            vm.CargarProductosCommand.Execute(null);
+            vm.CargarProductosAsyncCommand.Execute(null);
     }
 }
