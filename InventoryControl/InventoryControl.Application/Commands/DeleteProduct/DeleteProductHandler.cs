@@ -1,10 +1,11 @@
+using MediatR;
 using InventoryControl.Domain.Interfaces;
 
 namespace InventoryControl.Application.Commands.DeleteProduct;
 
-public record DeleteProductCommand(Guid Id);
+public record DeleteProductCommand(Guid Id) : IRequest;
 
-public class DeleteProductHandler
+public class DeleteProductHandler : IRequestHandler<DeleteProductCommand>
 {
     private readonly IProductRepository _repository;
 
@@ -13,6 +14,6 @@ public class DeleteProductHandler
         _repository = repository;
     }
 
-    public async Task HandleAsync(DeleteProductCommand command, CancellationToken ct = default)
+    public async Task Handle(DeleteProductCommand command, CancellationToken ct)
         => await _repository.DeleteAsync(command.Id, ct);
 }
