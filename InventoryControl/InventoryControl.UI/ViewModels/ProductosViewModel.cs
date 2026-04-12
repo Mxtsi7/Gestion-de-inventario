@@ -31,8 +31,9 @@ public partial class ProductosViewModel : ObservableObject
     partial void OnCategoriaSeleccionadaChanged(string? value) => AplicarFiltros();
     partial void OnEstadoSeleccionadoChanged(string? value) => AplicarFiltros();
 
+    // Nombre del método sin sufijo Async → genera CargarProductosCommand
     [RelayCommand]
-    private async Task CargarProductosAsync()
+    private async Task CargarProductos()
     {
         var productos = (await _repo.GetAllAsync()).ToList();
         _todos = productos.Select((p, i) => new ProductoFilaDto
@@ -124,7 +125,7 @@ public partial class ProductosViewModel : ObservableObject
         if (!ok) return;
 
         await _repo.DeleteAsync(id);
-        await CargarProductosAsync();
+        await CargarProductos();
     }
 }
 

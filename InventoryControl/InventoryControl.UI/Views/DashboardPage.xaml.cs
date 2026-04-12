@@ -14,6 +14,6 @@ public partial class DashboardPage : ContentPage
     {
         base.OnAppearing();
         if (BindingContext is DashboardViewModel vm)
-            vm.CargarDashboardCommand.Execute(null);
+            vm.CargarDashboardAsyncCommand.Execute(null);
     }
 }
