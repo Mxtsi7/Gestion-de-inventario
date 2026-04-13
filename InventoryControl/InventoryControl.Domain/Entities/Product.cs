@@ -24,6 +24,14 @@ public class Product
         CurrentStock = 0;
     }
 
+    public void Update(string name, string category, decimal unitPrice, int minimumStockThreshold)
+    {
+        Name = name;
+        Category = category;
+        UnitPrice = unitPrice;
+        MinimumStockThreshold = minimumStockThreshold;
+    }
+
     public void AddStock(int quantity)
     {
         if (quantity <= 0) throw new ArgumentException("Quantity must be positive.");
