@@ -16,15 +16,7 @@ public class UpdateProductHandler
         var product = await _repository.GetByIdAsync(command.Id, ct)
             ?? throw new KeyNotFoundException($"Product {command.Id} not found.");
 
-        // Usa reflexión o agrega un método Update en la entidad:
-        typeof(Domain.Entities.Product)
-            .GetProperty("Name")!.SetValue(product, command.Name);
-        typeof(Domain.Entities.Product)
-            .GetProperty("Category")!.SetValue(product, command.Category);
-        typeof(Domain.Entities.Product)
-            .GetProperty("UnitPrice")!.SetValue(product, command.UnitPrice);
-        typeof(Domain.Entities.Product)
-            .GetProperty("MinimumStockThreshold")!.SetValue(product, command.MinimumStockThreshold);
+        product.Update(command.Name, command.Category, command.UnitPrice, command.MinimumStockThreshold);
 
         await _repository.UpdateAsync(product, ct);
     }
