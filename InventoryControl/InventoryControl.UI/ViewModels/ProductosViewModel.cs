@@ -10,7 +10,7 @@ namespace InventoryControl.UI.ViewModels;
 public partial class ProductosViewModel : ObservableObject
 {
     private readonly IProductRepository _repo;
-    private List&lt;ProductoFilaDto&gt; _todos = new();
+    private List<ProductoFilaDto> _todos = new();
     private const int ItemsPorPagina = 10;
 
     [ObservableProperty] private string textoBusqueda = string.Empty;
@@ -19,23 +19,23 @@ public partial class ProductosViewModel : ObservableObject
     [ObservableProperty] private int paginaActual = 1;
     [ObservableProperty] private int totalPaginas = 1;
 
-    public ObservableCollection&lt;string&gt; Categorias { get; } = new();
-    public ObservableCollection&lt;ProductoFilaDto&gt; ProductosFiltrados { get; } = new();
+    public ObservableCollection<string> Categorias { get; } = new();
+    public ObservableCollection<ProductoFilaDto> ProductosFiltrados { get; } = new();
 
     public ProductosViewModel(IProductRepository repo)
     {
         _repo = repo;
     }
 
-    partial void OnTextoBusquedaChanged(string value) =&gt; AplicarFiltros();
-    partial void OnCategoriaSeleccionadaChanged(string? value) =&gt; AplicarFiltros();
-    partial void OnEstadoSeleccionadoChanged(string? value) =&gt; AplicarFiltros();
+    partial void OnTextoBusquedaChanged(string value) => AplicarFiltros();
+    partial void OnCategoriaSeleccionadaChanged(string? value) => AplicarFiltros();
+    partial void OnEstadoSeleccionadoChanged(string? value) => AplicarFiltros();
 
     [RelayCommand]
     private async Task CargarProductos()
     {
         var productos = (await _repo.GetAllAsync()).ToList();
-        _todos = productos.Select((p, i) =&gt; new ProductoFilaDto
+        _todos = productos.Select((p, i) => new ProductoFilaDto
         {
             Id = p.Id,
             Nombre = p.Name,
@@ -46,15 +46,15 @@ public partial class ProductosViewModel : ObservableObject
             Precio = p.UnitPrice,
             Estado = p.GetStockLevelStatus() switch
             {
-                "OK"  =&gt; "Disponible",
-                "LOW" =&gt; "Stock bajo",
-                _     =&gt; "Agotado"
+                "OK"  => "Disponible",
+                "LOW" => "Stock bajo",
+                _     => "Agotado"
             },
             Indice = i
         }).ToList();
 
         Categorias.Clear();
-        foreach (var cat in _todos.Select(p =&gt; p.Categoria).Distinct().OrderBy(c =&gt; c))
+        foreach (var cat in _todos.Select(p => p.Categoria).Distinct().OrderBy(c => c))
             Categorias.Add(cat);
 
         AplicarFiltros();
@@ -65,15 +65,15 @@ public partial class ProductosViewModel : ObservableObject
         var filtrado = _todos.AsEnumerable();
 
         if (!string.IsNullOrWhiteSpace(TextoBusqueda))
-            filtrado = filtrado.Where(p =&gt;
+            filtrado = filtrado.Where(p =>
                 p.Nombre.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase) ||
                 p.SKU.Contains(TextoBusqueda, StringComparison.OrdinalIgnoreCase));
 
         if (!string.IsNullOrEmpty(CategoriaSeleccionada))
-            filtrado = filtrado.Where(p =&gt; p.Categoria == CategoriaSeleccionada);
+            filtrado = filtrado.Where(p => p.Categoria == CategoriaSeleccionada);
 
-        if (!string.IsNullOrEmpty(EstadoSeleccionado) &amp;&amp; EstadoSeleccionado != "Todos")
-            filtrado = filtrado.Where(p =&gt; p.Estado == EstadoSeleccionado);
+        if (!string.IsNullOrEmpty(EstadoSeleccionado) && EstadoSeleccionado != "Todos")
+            filtrado = filtrado.Where(p => p.Estado == EstadoSeleccionado);
 
         var lista = filtrado.ToList();
         TotalPaginas = Math.Max(1, (int)Math.Ceiling(lista.Count / (double)ItemsPorPagina));
@@ -91,13 +91,13 @@ public partial class ProductosViewModel : ObservableObject
     [RelayCommand]
     private void PaginaAnterior()
     {
-        if (PaginaActual &gt; 1) { PaginaActual--; AplicarFiltros(); }
+        if (PaginaActual > 1) { PaginaActual--; AplicarFiltros(); }
     }
 
     [RelayCommand]
     private void PaginaSiguiente()
     {
-        if (PaginaActual &lt; TotalPaginas) { PaginaActual++; AplicarFiltros(); }
+        if (PaginaActual < TotalPaginas) { PaginaActual++; AplicarFiltros(); }
     }
 
     [RelayCommand]
@@ -110,10 +110,8 @@ public partial class ProductosViewModel : ObservableObject
     private async Task EditarProducto(ProductoFilaDto? dto)
     {
         if (dto is null) return;
-        await Shell.Current.GoToAsync("productForm", new Dictionary&lt;string, object&gt;
-        {
-            { "id", dto.Id.ToString() }
-        });
+        await Shell.Current.GoToAsync("productForm",
+            new Dictionary<string, object> { { "id", dto.Id.ToString() } });
     }
 
     [RelayCommand]
@@ -143,23 +141,23 @@ public class ProductoFilaDto
     public string Estado { get; set; } = string.Empty;
     public int Indice { get; set; }
 
-    public Color FilaColor =&gt; Indice % 2 == 0
+    public Color FilaColor => Indice % 2 == 0
         ? Color.FromArgb("#FFFFFF")
         : Color.FromArgb("#F8F7FF");
 
-    public Color StockColor =&gt; Estado == "Disponible"
+    public Color StockColor => Estado == "Disponible"
         ? Color.FromArgb("#0a8a6e")
         : Estado == "Stock bajo"
             ? Color.FromArgb("#c47a00")
             : Color.FromArgb("#c94040");
 
-    public Color EstadoBadgeBg =&gt; Estado == "Disponible"
+    public Color EstadoBadgeBg => Estado == "Disponible"
         ? Color.FromArgb("#e0fbf5")
         : Estado == "Stock bajo"
             ? Color.FromArgb("#fff4e0")
             : Color.FromArgb("#fff0ef");
 
-    public Color EstadoBadgeFg =&gt; Estado == "Disponible"
+    public Color EstadoBadgeFg => Estado == "Disponible"
         ? Color.FromArgb("#0a8a6e")
         : Estado == "Stock bajo"
             ? Color.FromArgb("#c47a00")
