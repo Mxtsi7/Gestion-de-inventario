@@ -1,3 +1,5 @@
+using MediatR;
+
 namespace InventoryControl.Application.Commands.UpdateProduct;
 
 public record UpdateProductCommand(
@@ -6,4 +8,4 @@ public record UpdateProductCommand(
     string Category,
     decimal UnitPrice,
     int MinimumStockThreshold
-);
+) : IRequest;
