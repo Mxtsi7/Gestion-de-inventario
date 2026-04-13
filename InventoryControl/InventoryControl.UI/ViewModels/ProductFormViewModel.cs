@@ -22,7 +22,6 @@ public class ProductFormViewModel : BindableObject
     private string _errorMessage = string.Empty;
     private bool _isBusy;
 
-    // Cuando Shell asigna el id, cargamos el producto existente
     public string ProductId
     {
         get => _productId;
@@ -32,6 +31,7 @@ public class ProductFormViewModel : BindableObject
             OnPropertyChanged();
             OnPropertyChanged(nameof(IsEditMode));
             OnPropertyChanged(nameof(PageTitle));
+            OnPropertyChanged(nameof(SaveButtonText));
             if (Guid.TryParse(value, out _))
                 _ = LoadProductAsync(value);
         }
@@ -39,6 +39,7 @@ public class ProductFormViewModel : BindableObject
 
     public bool IsEditMode => Guid.TryParse(_productId, out _);
     public string PageTitle => IsEditMode ? "Editar Producto" : "Nuevo Producto";
+    public string SaveButtonText => IsEditMode ? "💾  Actualizar Producto" : "💾  Guardar Producto";
 
     public string Name
     {
