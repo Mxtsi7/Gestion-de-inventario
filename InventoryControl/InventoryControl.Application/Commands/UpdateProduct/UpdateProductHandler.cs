@@ -1,8 +1,9 @@
+using MediatR;
 using InventoryControl.Domain.Interfaces;
 
 namespace InventoryControl.Application.Commands.UpdateProduct;
 
-public class UpdateProductHandler
+public class UpdateProductHandler : IRequestHandler<UpdateProductCommand>
 {
     private readonly IProductRepository _repository;
 
@@ -11,7 +12,7 @@ public class UpdateProductHandler
         _repository = repository;
     }
 
-    public async Task HandleAsync(UpdateProductCommand command, CancellationToken ct = default)
+    public async Task Handle(UpdateProductCommand command, CancellationToken ct)
     {
         var product = await _repository.GetByIdAsync(command.Id, ct)
             ?? throw new KeyNotFoundException($"Product {command.Id} not found.");
