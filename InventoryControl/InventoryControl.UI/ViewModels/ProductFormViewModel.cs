@@ -1,13 +1,19 @@
 using System.Windows.Input;
 using MediatR;
 using InventoryControl.Application.Commands.RegisterProduct;
+using InventoryControl.Application.Commands.UpdateProduct;
+using InventoryControl.Domain.Interfaces;
 using Microsoft.Maui.Controls;
 
 namespace InventoryControl.UI.ViewModels;
 
+[QueryProperty(nameof(ProductId), "id")]
 public class ProductFormViewModel : BindableObject
 {
     private readonly IMediator _mediator;
+    private readonly IProductRepository _repository;
+
+    private string _productId = string.Empty;
     private string _name = string.Empty;
     private string _sku = string.Empty;
     private string _category = string.Empty;
@@ -15,6 +21,24 @@ public class ProductFormViewModel : BindableObject
     private string _minimumStockThreshold = string.Empty;
     private string _errorMessage = string.Empty;
     private bool _isBusy;
+
+    // Cuando Shell asigna el id, cargamos el producto existente
+    public string ProductId
+    {
+        get => _productId;
+        set
+        {
+            _productId = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(IsEditMode));
+            OnPropertyChanged(nameof(PageTitle));
+            if (Guid.TryParse(value, out _))
+                _ = LoadProductAsync(value);
+        }
+    }
+
+    public bool IsEditMode => Guid.TryParse(_productId, out _);
+    public string PageTitle => IsEditMode ? "Editar Producto" : "Nuevo Producto";
 
     public string Name
     {
@@ -64,11 +88,25 @@ public class ProductFormViewModel : BindableObject
     public ICommand SaveCommand { get; }
     public ICommand CancelCommand { get; }
 
-    public ProductFormViewModel(IMediator mediator)
+    public ProductFormViewModel(IMediator mediator, IProductRepository repository)
     {
         _mediator = mediator;
+        _repository = repository;
         SaveCommand = new Command(async () => await SaveAsync());
         CancelCommand = new Command(async () => await Shell.Current.GoToAsync(".."));
+    }
+
+    private async Task LoadProductAsync(string id)
+    {
+        if (!Guid.TryParse(id, out var guid)) return;
+        var product = await _repository.GetByIdAsync(guid);
+        if (product is null) return;
+
+        Name = product.Name;
+        Sku = product.Sku;
+        Category = product.Category;
+        UnitPrice = product.UnitPrice.ToString();
+        MinimumStockThreshold = product.MinimumStockThreshold.ToString();
     }
 
     private async Task SaveAsync()
@@ -96,8 +134,17 @@ public class ProductFormViewModel : BindableObject
         IsBusy = true;
         try
         {
-            var command = new RegisterProductCommand(Name, Sku, Category, price, minStock);
-            await _mediator.Send(command);
+            if (IsEditMode)
+            {
+                var command = new UpdateProductCommand(Guid.Parse(_productId), Name, Category, price, minStock);
+                await _mediator.Send(command);
+            }
+            else
+            {
+                var command = new RegisterProductCommand(Name, Sku, Category, price, minStock);
+                await _mediator.Send(command);
+            }
+
             await Shell.Current.GoToAsync("..");
         }
         catch (Exception ex)
