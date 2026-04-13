@@ -24,6 +24,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = InventoryControl.UI.AppShe
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
+[C:/Users/chris/OneDrive/Escritorio/empresariales/Gestion-de-inventario/InventoryControl/InventoryControl.UI/Popups/RegistrarMovimientoPopup.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = InventoryControl.UI.Popups.RegistrarMovimientoPopup.xaml
+build_metadata.AdditionalFiles.TargetPath = Popups\RegistrarMovimientoPopup.xaml
+build_metadata.AdditionalFiles.RelativePath = Popups\RegistrarMovimientoPopup.xaml
+
 [C:/Users/chris/OneDrive/Escritorio/empresariales/Gestion-de-inventario/InventoryControl/InventoryControl.UI/Views/DashboardPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = InventoryControl.UI.Views.DashboardPage.xaml
@@ -42,17 +48,35 @@ build_metadata.AdditionalFiles.ManifestResourceName = InventoryControl.UI.Views.
 build_metadata.AdditionalFiles.TargetPath = Views\MovementsPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\MovementsPage.xaml
 
+[C:/Users/chris/OneDrive/Escritorio/empresariales/Gestion-de-inventario/InventoryControl/InventoryControl.UI/Views/MovimientosPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = InventoryControl.UI.Views.MovimientosPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\MovimientosPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\MovimientosPage.xaml
+
 [C:/Users/chris/OneDrive/Escritorio/empresariales/Gestion-de-inventario/InventoryControl/InventoryControl.UI/Views/ProductFormPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = InventoryControl.UI.Views.ProductFormPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\ProductFormPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\ProductFormPage.xaml
 
+[C:/Users/chris/OneDrive/Escritorio/empresariales/Gestion-de-inventario/InventoryControl/InventoryControl.UI/Views/ProductosPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = InventoryControl.UI.Views.ProductosPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ProductosPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ProductosPage.xaml
+
 [C:/Users/chris/OneDrive/Escritorio/empresariales/Gestion-de-inventario/InventoryControl/InventoryControl.UI/Views/ProductsPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = InventoryControl.UI.Views.ProductsPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\ProductsPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\ProductsPage.xaml
+
+[C:/Users/chris/OneDrive/Escritorio/empresariales/Gestion-de-inventario/InventoryControl/InventoryControl.UI/Views/ReportesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = InventoryControl.UI.Views.ReportesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ReportesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ReportesPage.xaml
 
 [C:/Users/chris/OneDrive/Escritorio/empresariales/Gestion-de-inventario/InventoryControl/InventoryControl.UI/Views/ReportsPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
