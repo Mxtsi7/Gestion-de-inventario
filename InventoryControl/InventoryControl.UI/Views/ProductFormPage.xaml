@@ -5,7 +5,7 @@
     xmlns:vm="clr-namespace:InventoryControl.UI.ViewModels"
     x:Class="InventoryControl.UI.Views.ProductFormPage"
     x:DataType="vm:ProductFormViewModel"
-    Title="Nuevo Producto"
+    Title="{Binding PageTitle}"
     BackgroundColor="{StaticResource Background}">
 
     <ScrollView>
@@ -15,9 +15,9 @@
             <Border Padding="20" StrokeShape="RoundRectangle 12" Margin="0,8,0,20"
                     BackgroundColor="{StaticResource Primary}" Stroke="Transparent">
                 <VerticalStackLayout Spacing="4">
-                    <Label Text="📋 REGISTRO" FontSize="11" TextColor="#B3E5FC"
-                           FontAttributes="Bold" CharacterSpacing="1" />
-                    <Label Text="Nuevo Producto" FontSize="22" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="{Binding IsEditMode, Converter={StaticResource BoolToStringConverter}, ConverterParameter='EDITAR|REGISTRO'}" 
+                           FontSize="11" TextColor="#B3E5FC" FontAttributes="Bold" CharacterSpacing="1" />
+                    <Label Text="{Binding PageTitle}" FontSize="22" FontAttributes="Bold" TextColor="White" />
                     <Label Text="Completa todos los campos del producto"
                            FontSize="13" TextColor="#B3E5FC" />
                 </VerticalStackLayout>
@@ -32,7 +32,7 @@
             </Border>
 
             <!-- Campo SKU -->
-            <Label Text="SKU / CÓDIGO" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
+            <Label Text="SKU / C\u00d3DIGO" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}"
                     BackgroundColor="{StaticResource Surface}" Margin="0,0,0,16">
                 <Entry Text="{Binding Sku}" Placeholder="Ej: ARR-001"
@@ -40,7 +40,7 @@
             </Border>
 
             <!-- Campo Categoría -->
-            <Label Text="CATEGORÍA" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
+            <Label Text="CATEGOR\u00cdA" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}"
                     BackgroundColor="{StaticResource Surface}" Margin="0,0,0,16">
                 <Entry Text="{Binding Category}" Placeholder="Ej: Alimentos"
@@ -58,7 +58,7 @@
                     </Border>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Column="2">
-                    <Label Text="STOCK MÍNIMO" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
+                    <Label Text="STOCK M\u00cdNIMO" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
                     <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}"
                             BackgroundColor="{StaticResource Surface}">
                         <Entry Text="{Binding MinimumStockThreshold}" Placeholder="0" Keyboard="Numeric"
@@ -75,7 +75,7 @@
                    Margin="0,0,0,12" />
 
             <!-- Botones -->
-            <Button Text="💾  Guardar Producto"
+            <Button Text="{Binding SaveButtonText}"
                     Command="{Binding SaveCommand}"
                     Style="{StaticResource PrimaryButton}"
                     IsEnabled="{Binding IsNotBusy}"
