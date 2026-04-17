@@ -27,25 +27,49 @@
             <Label Text="NOMBRE DEL PRODUCTO" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}"
                     BackgroundColor="{StaticResource Surface}" Margin="0,0,0,16">
-                <Entry Text="{Binding Name}" Placeholder="Ej: Arroz 1kg"
+                <Entry Text="{Binding Name}" Placeholder="Ej: Laptop Dell Inspiron 15"
                        Margin="4,0" ReturnType="Next" />
             </Border>
 
             <!-- Campo SKU -->
-            <Label Text="SKU / C\u00d3DIGO" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
+            <Label Text="SKU / CÓDIGO" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}"
                     BackgroundColor="{StaticResource Surface}" Margin="0,0,0,16">
-                <Entry Text="{Binding Sku}" Placeholder="Ej: ARR-001"
+                <Entry Text="{Binding Sku}" Placeholder="Ej: LAP-DELL-001"
                        Margin="4,0" ReturnType="Next" />
             </Border>
 
-            <!-- Campo Categoría -->
-            <Label Text="CATEGOR\u00cdA" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
-            <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}"
-                    BackgroundColor="{StaticResource Surface}" Margin="0,0,0,16">
-                <Entry Text="{Binding Category}" Placeholder="Ej: Alimentos"
-                       Margin="4,0" ReturnType="Next" />
-            </Border>
+            <!-- Campo Categoría - Menú desplegable -->
+            <Label Text="CATEGORÍA" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
+            <Grid ColumnDefinitions="*,12,Auto" Margin="0,0,0,8">
+                <!-- Picker con categorías predeterminadas de electrónica -->
+                <Border Grid.Column="0" StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}"
+                        BackgroundColor="{StaticResource Surface}">
+                    <Picker Title="Selecciona una categoría"
+                            ItemsSource="{Binding Categories}"
+                            SelectedItem="{Binding SelectedCategory}"
+                            Margin="4,0" />
+                </Border>
+                <!-- Botón para agregar nueva categoría -->
+                <Button Grid.Column="2"
+                        Text="＋"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Command="{Binding AddCategoryCommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        CornerRadius="8"
+                        ToolTipProperties.Text="Agregar nueva categoría"
+                        VerticalOptions="Center" />
+            </Grid>
+            <!-- Indicador de la categoría seleccionada / nueva -->
+            <Label Text="{Binding CategoryHint}"
+                   FontSize="12"
+                   TextColor="{StaticResource ColorTextoSuave}"
+                   IsVisible="{Binding HasCategoryHint}"
+                   Margin="0,0,0,12" />
 
             <!-- Fila precio / stock mínimo -->
             <Grid ColumnDefinitions="*,16,*" Margin="0,0,0,16">
@@ -58,7 +82,7 @@
                     </Border>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Column="2">
-                    <Label Text="STOCK M\u00cdNIMO" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
+                    <Label Text="STOCK MÍNIMO" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
                     <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}"
                             BackgroundColor="{StaticResource Surface}">
                         <Entry Text="{Binding MinimumStockThreshold}" Placeholder="0" Keyboard="Numeric"
